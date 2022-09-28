@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Introducción al manejo de datos en R | Métodos Cuantitativos para Relaciones Internacionales</title>
+  <meta name="description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Introducción al manejo de datos en R | Métodos Cuantitativos para Relaciones Internacionales" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Introducción al manejo de datos en R | Métodos Cuantitativos para Relaciones Internacionales" />
+  
+  <meta name="twitter:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+<meta name="author" content="Armando González Díaz. armando.gonzalezdi@anahuac.mx  www.twitter.com/Ar_GonTr" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="Anahuac.ico" type="image/x-icon" />
+<link rel="prev" href="index.html"/>
+<link rel="next" href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Instalación y primeros pasos con R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#windows"><i class="fa fa-check"></i><b>1.1</b> Windows</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#descargar-e-instalar-r"><i class="fa fa-check"></i><b>1.1.1</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#instalar-rtools"><i class="fa fa-check"></i><b>1.1.2</b> Instalar <code>Rtools</code></a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Instalación de <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#instalación-en-mac"><i class="fa fa-check"></i><b>1.2</b> Instalación en Mac</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#instalación-de-xquartz"><i class="fa fa-check"></i><b>1.2.1</b> Instalación de <code>Xquartz</code></a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#descargar-e-instalar-r-1"><i class="fa fa-check"></i><b>1.2.2</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Instalar <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#lo-logramos"><i class="fa fa-check"></i><b>1.3</b> ¡Lo logramos!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html"><i class="fa fa-check"></i><b>2</b> Introducción al manejo de datos en R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#paquetes-necesarios"><i class="fa fa-check"></i><b>2.1</b> Paquetes necesarios</a></li>
+<li class="chapter" data-level="2.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#repaso-operaciones-básicas-y-primera-interacción-con-r"><i class="fa fa-check"></i><b>2.2</b> Repaso: Operaciones básicas y primera interacción con R</a></li>
+<li class="chapter" data-level="2.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#instalación-y-carga-de-paquetes."><i class="fa fa-check"></i><b>2.3</b> Instalación y carga de paquetes.</a></li>
+<li class="chapter" data-level="2.4" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#principales-tipos-de-objetos-valores-vectores-matrices-y-data.frame"><i class="fa fa-check"></i><b>2.4</b> Principales tipos de objetos: valores, vectores, matrices y <code>data.frame</code></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#vectores"><i class="fa fa-check"></i><b>2.4.1</b> vectores</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#matrices"><i class="fa fa-check"></i><b>2.4.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#el-dataframe"><i class="fa fa-check"></i><b>2.4.3</b> El <code>dataframe</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#selección-de-objetos-dentro-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.5</b> Selección de objetos dentro de una base de datos</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#teoría-de-conjuntos-álgebra-y-los-lenguajes-de-programación"><i class="fa fa-check"></i><b>2.5.1</b> Teoría de conjuntos, álgebra y los lenguajes de programación</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#algunas-operaciones-básicas-que-pueden-hacerse-con-r"><i class="fa fa-check"></i><b>2.6</b> Algunas operaciones básicas que pueden hacerse con <code>R</code></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#importando-datos-con-r"><i class="fa fa-check"></i><b>2.6.1</b> Importando datos con R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.7</b> Operaciones básicas</a></li>
+<li class="chapter" data-level="2.8" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#ejercicio"><i class="fa fa-check"></i><b>2.8</b> Ejercicio:</a></li>
+<li class="chapter" data-level="2.9" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#bibliografía"><i class="fa fa-check"></i><b>2.9</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><i class="fa fa-check"></i><b>3</b> Exprimiendo una base de datos: obtener datos útiles.</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#instalamos-y-cargamos-paquete"><i class="fa fa-check"></i><b>3.1</b> Instalamos y cargamos paquete</a></li>
+<li class="chapter" data-level="3.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-pipe-operator"><i class="fa fa-check"></i><b>3.2</b> El <code>pipe</code> operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-binomio-group_by-summarise"><i class="fa fa-check"></i><b>3.3</b> El binomio <code>group_by + summarise</code></a></li>
+<li class="chapter" data-level="3.4" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#creación-de-variables"><i class="fa fa-check"></i><b>3.4</b> Creación de variables</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#r-base"><i class="fa fa-check"></i><b>3.4.1</b> <code>R base</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#group_by-mutate"><i class="fa fa-check"></i><b>3.4.2</b> <code>group_by + mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#ejercicios"><i class="fa fa-check"></i><b>3.5</b> Ejercicios:</a></li>
+<li class="chapter" data-level="3.6" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#bibliografía-1"><i class="fa fa-check"></i><b>3.6</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html"><i class="fa fa-check"></i><b>4</b> Regresión lineal: Repaso.</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#recordamos-lo-que-habíamos-visto-en-clase"><i class="fa fa-check"></i><b>4.1</b> Recordamos lo que habíamos visto en clase:</a></li>
+<li class="chapter" data-level="4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#heterocedasticidad"><i class="fa fa-check"></i><b>4.2</b> Heterocedasticidad</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.2.1</b> 1) Transformación de variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#el-uso-de-errores-estándar-robustos"><i class="fa fa-check"></i><b>4.2.2</b> 2) El uso de errores estándar robustos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#factor-de-inflación-de-la-varianza-vif"><i class="fa fa-check"></i><b>4.3</b> Factor de inflación de la varianza (VIF)</a></li>
+<li class="chapter" data-level="4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#interpretacion-de-coeficientes"><i class="fa fa-check"></i><b>4.4</b> Interpretacion de coeficientes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#la-r-cuadrada"><i class="fa fa-check"></i><b>4.4.1</b> La R cuadrada</a></li>
+<li class="chapter" data-level="4.4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#los-coeficientes-de-las-variables-independientes."><i class="fa fa-check"></i><b>4.4.2</b> Los coeficientes de las variables independientes.</a></li>
+<li class="chapter" data-level="4.4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#ejercicio-interpretar-los-resultados-de-esta-regresión"><i class="fa fa-check"></i><b>4.4.3</b> Ejercicio: interpretar los resultados de esta regresión</a></li>
+<li class="chapter" data-level="4.4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#bibliografía-2"><i class="fa fa-check"></i><b>4.4.4</b> Bibliografía</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>5</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regresión-logística.html"><a href="regresión-logística.html#importar-la-base-de-datos"><i class="fa fa-check"></i><b>5.1</b> Importar la base de datos</a></li>
+<li class="chapter" data-level="5.2" data-path="regresión-logística.html"><a href="regresión-logística.html#descripción-de-la-base"><i class="fa fa-check"></i><b>5.2</b> Descripción de la base</a></li>
+<li class="chapter" data-level="5.3" data-path="regresión-logística.html"><a href="regresión-logística.html#limpieza-de-bases-de-datos"><i class="fa fa-check"></i><b>5.3</b> Limpieza de bases de datos</a></li>
+<li class="chapter" data-level="5.4" data-path="regresión-logística.html"><a href="regresión-logística.html#para-qué-sirve-este-modelo"><i class="fa fa-check"></i><b>5.4</b> ¿Para qué sirve este modelo?</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#información-adicional"><i class="fa fa-check"></i><b>5.4.1</b> Información adicional:</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos Cuantitativos para Relaciones Internacionales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introducción-al-manejo-de-datos-en-r" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Introducción al manejo de datos en R<a href="introducción-al-manejo-de-datos-en-r.html#introducción-al-manejo-de-datos-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="paquetes-necesarios" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Paquetes necesarios<a href="introducción-al-manejo-de-datos-en-r.html#paquetes-necesarios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>stringr</code> Wickham H (2021)</p>
+</div>
+<div id="repaso-operaciones-básicas-y-primera-interacción-con-r" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Repaso: Operaciones básicas y primera interacción con R<a href="introducción-al-manejo-de-datos-en-r.html#repaso-operaciones-básicas-y-primera-interacción-con-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una de las principales características de R es el uso del “objetos” como entidad básica. Éstos pueden ser números o letras individuales o bien conjuntos de númeroso letras, funciones, matrices, bases de datos, listas, etc. Poco a poco vamos a ver que son cada tipo de objeto.</p>
+<p>Estos objetos pueden ser grabados en el entorno para su uso. Por ejemplo, podemos hacer un cálculo simple y guardarlo para usarlo después.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 1</span></span>
+<span id="cb1-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">*</span><span class="dv">5</span> <span class="co"># Podemos usar R como calculadora</span></span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">*</span><span class="dv">5</span> <span class="co"># lo grabamos</span></span></code></pre></div>
+<div class="figure">
+<img src="images/Cap%C3%ADtulo%201/ejemplo1.png" alt="" />
+<p class="caption">Ejemplo 1</p>
+</div>
+<p>Para grabar un objeto, pueden usarse distintos operadores. El más común es el que acabamos de ver en el ejempo de arriba, pero pueden ser también “<code>=</code>” o “<code>-&gt;</code>”</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 2</span></span>
+<span id="cb4-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb4-2" aria-hidden="true" tabindex="-1"></a>objeto <span class="ot">&lt;-</span> <span class="st">&quot;objeto&quot;</span></span>
+<span id="cb4-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb4-3" aria-hidden="true" tabindex="-1"></a>objeto1<span class="ot">=</span><span class="st">&quot;objeto1&quot;</span></span>
+<span id="cb4-4"><a href="introducción-al-manejo-de-datos-en-r.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;objeto2&quot;</span><span class="ot">-&gt;</span>objeto2</span>
+<span id="cb4-5"><a href="introducción-al-manejo-de-datos-en-r.html#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="introducción-al-manejo-de-datos-en-r.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Cuando grabamos un objeto podemos llamarlo después:</span></span>
+<span id="cb4-7"><a href="introducción-al-manejo-de-datos-en-r.html#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="introducción-al-manejo-de-datos-en-r.html#cb4-8" aria-hidden="true" tabindex="-1"></a>objeto</span></code></pre></div>
+<pre><code>## [1] &quot;objeto&quot;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb6-1" aria-hidden="true" tabindex="-1"></a>objeto1</span></code></pre></div>
+<pre><code>## [1] &quot;objeto1&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb8-1" aria-hidden="true" tabindex="-1"></a>objeto2</span></code></pre></div>
+<pre><code>## [1] &quot;objeto2&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># También podemos transformarlo con una función:</span></span>
+<span id="cb10-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 3</span></span>
+<span id="cb10-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(objeto) <span class="co"># En este caso, convertir las letras minúsculas en mayúsculas</span></span></code></pre></div>
+<pre><code>## [1] &quot;OBJETO&quot;</code></pre>
+</div>
+<div id="instalación-y-carga-de-paquetes." class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Instalación y carga de paquetes.<a href="introducción-al-manejo-de-datos-en-r.html#instalación-y-carga-de-paquetes." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una de las cosas que hicieron tan poderoso y utilizado <code>R</code>, es que muchas personas diseñan conjuntos de funciones de acuerdo a sus necesidades de investigación y luego las publican. Una forma de compartir sus métodos es mediante la creación de paquetes, que se instalan como módulos y permiten hacer más cosas y/o de manera más simple.</p>
+<p>Una gran cantidad de paquetes son almacenados en el servidor de <code>R</code>, donde son revisados y deben cumplir ciertas condiciones para ser avalados por la comunidad. Cuando deseamos instalar paquetes utilizamos la función <code>install.packages</code>. Por defecto, busca en el servidor de R el paquete que necesitamos. Uno de los paquetes más utilizados es <code>dplyr</code>, que puede instalarse así:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co"># notese que debemos escribir el nombre del paquete en comillas</span></span></code></pre></div>
+<p>Después de la instalación debe <strong>cargarse</strong> el paquete, para que R reconozca que utilizaremos sus funciones. Esto se hace con la función <code>library</code></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># una vez que ya está instalado, no es necesario escribirlo entre comillas</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<p>Ahora bien, no todos los paquetes están en el servidor de <code>R</code>. Muchos los desarrollaron investigadores y los alojan en sus propios servidores, o en su pagina de <code>github</code>, una página con funcionalidades muy interesantes para desarrolladores que buscan compartir su trabajo. Muchos de estos paquetes sun útilies. En este caso, podemos utilizar la función
+<code>install_github</code> del paquete <code>remotes</code>. Para este ejemplo, instalaremos <code>paqueteadp</code> que fue creado por <code>Cruz y Urdiñez (2021)</code> como material de apoyo para aprendizaje de <code>R</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalamos el paquete remotes:</span></span>
+<span id="cb17-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb17-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos el paquete:</span></span>
+<span id="cb17-4"><a href="introducción-al-manejo-de-datos-en-r.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
+<span id="cb17-5"><a href="introducción-al-manejo-de-datos-en-r.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># instalamos: </span></span>
+<span id="cb17-6"><a href="introducción-al-manejo-de-datos-en-r.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;arcruz0/paqueteadp&quot;</span>, <span class="at">upgrade=</span><span class="st">&quot;never&quot;</span>)</span></code></pre></div>
+<p>Una vez que tenemos instalado un paquete, ya no es necesario volverlo a instalar cada que abramos <code>R</code> o <code>Rstudio</code>. No obstante, si tendremos que llamar los paquetes con <code>library</code> cada que iniciemos una sesión nueva.</p>
+</div>
+<div id="principales-tipos-de-objetos-valores-vectores-matrices-y-data.frame" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Principales tipos de objetos: valores, vectores, matrices y <code>data.frame</code><a href="introducción-al-manejo-de-datos-en-r.html#principales-tipos-de-objetos-valores-vectores-matrices-y-data.frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="vectores" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> vectores<a href="introducción-al-manejo-de-datos-en-r.html#vectores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un vector es básicamente una lista de objetos individuales reunidos con un orden específico y de una clase en particular. Por ejemplo, los números del uno al diez (numérico) o sus nombres (caracter):</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 4</span></span>
+<span id="cb18-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb18-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># grabamos objeto &quot;num&quot; que contiene los números del 1 al 10</span></span>
+<span id="cb18-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb18-3" aria-hidden="true" tabindex="-1"></a>num         <span class="co"># Le pedimos a R que nos muestre el objeto num</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb20-1" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;uno&quot;</span>, <span class="st">&quot;dos&quot;</span>, <span class="st">&quot;tres&quot;</span>, <span class="st">&quot;cuatro&quot;</span>, <span class="st">&quot;cinco&quot;</span>, <span class="st">&quot;seis&quot;</span>, <span class="st">&quot;siete&quot;</span>, <span class="st">&quot;ocho&quot;</span>, <span class="st">&quot;nueve&quot;</span>, <span class="st">&quot;diez&quot;</span>)</span>
+<span id="cb20-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb20-2" aria-hidden="true" tabindex="-1"></a>nombres</span></code></pre></div>
+<pre><code>##  [1] &quot;uno&quot;    &quot;dos&quot;    &quot;tres&quot;   &quot;cuatro&quot; &quot;cinco&quot;  &quot;seis&quot;   &quot;siete&quot;  &quot;ocho&quot;  
+##  [9] &quot;nueve&quot;  &quot;diez&quot;</code></pre>
+<p>Aquí existen dos características importantes: los miembros del grupo y el orden en que se llaman. Para referirnos a un objeto en específico, podemos hacerlo de acuerdo con su posición dentro del vector:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 5</span></span>
+<span id="cb22-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb22-2" aria-hidden="true" tabindex="-1"></a>num[<span class="dv">1</span>] <span class="co"># esto nos muestra el primer elemento del vector num</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 6</span></span>
+<span id="cb24-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb24-2" aria-hidden="true" tabindex="-1"></a>nombres[<span class="dv">5</span>] <span class="co"># esto nos muestra el quinto elemento del objeto nombres</span></span></code></pre></div>
+<pre><code>## [1] &quot;cinco&quot;</code></pre>
+<div id="vectores-numéricos-y-vectores-de-caracteres" class="section level4 hasAnchor" number="2.4.1.1">
+<h4><span class="header-section-number">2.4.1.1</span> Vectores numéricos y vectores de caracteres<a href="introducción-al-manejo-de-datos-en-r.html#vectores-numéricos-y-vectores-de-caracteres" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Aquí conviene distinguir que el vector “num” y el vector “nombres” son objetos cualitativamente distintos:
+El primero es numérico. Pueden hacerse operaciones de suma, resta, multiplicación, etc. El segundo es un conjunto de palabras para nosotros, pero para R son caracteres.</p>
+<p>Con el primero se pueden hacer todo tipo de operaciones:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 7</span></span>
+<span id="cb26-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb26-2" aria-hidden="true" tabindex="-1"></a>num<span class="sc">*</span><span class="dv">100</span> <span class="co"># multiplica cada uno de los elementos del vector por cien</span></span></code></pre></div>
+<pre><code>##  [1]  100  200  300  400  500  600  700  800  900 1000</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(num) <span class="co"># medidas de tendencia central (si el vector es numérico)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.00    3.25    5.50    5.50    7.75   10.00</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a>num<span class="sc">/</span>num <span class="co"># divide cada uno de los elementos del vector num entre los elementos del mismo vector (u otro de la misma longitud)</span></span></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(num) <span class="co"># obtiene el logaritmo natural de cada uno de los elementos del vector</span></span></code></pre></div>
+<pre><code>##  [1] 0.0000000 0.6931472 1.0986123 1.3862944 1.6094379 1.7917595 1.9459101
+##  [8] 2.0794415 2.1972246 2.3025851</code></pre>
+<p>Podemos también guardar los resultados.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 8</span></span>
+<span id="cb34-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb34-2" aria-hidden="true" tabindex="-1"></a>resumen <span class="ot">&lt;-</span> <span class="fu">summary</span>(num) <span class="co"># guarda el resumen de &#39;num&#39; en el objeto &#39;resumen&#39;</span></span></code></pre></div>
+<p>Con el segundo se pueden extraer algunos caracteres, reemplazar los acentos, cambiar entre mayúsculas y munúsculas, obtener el numero de caracteres (pero no operaciones matemáticas):</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 9</span></span>
+<span id="cb35-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nombres) <span class="co"># nótese que en este caso, el resultado es distinto. Esto es porque el objeto nombres es un vector de cadenas de caracteres</span></span></code></pre></div>
+<pre><code>##    Length     Class      Mode 
+##        10 character character</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 10</span></span>
+<span id="cb37-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># algunas operaciones básicas con caracteres.</span></span>
+<span id="cb37-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(nombres,<span class="dv">1</span>,<span class="dv">1</span>) <span class="co"># extrae del primer caracter hasta el número que se indique (en este caso el uno)</span></span></code></pre></div>
+<pre><code>##  [1] &quot;u&quot; &quot;d&quot; &quot;t&quot; &quot;c&quot; &quot;c&quot; &quot;s&quot; &quot;s&quot; &quot;o&quot; &quot;n&quot; &quot;d&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#por ejemplo, poner los nombres de los números con formato título, que lleva mayúscula en la primera letra:</span></span>
+<span id="cb39-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;stringr&quot;)</span></span>
+<span id="cb39-4"><a href="introducción-al-manejo-de-datos-en-r.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr) <span class="co">#cargamos paquete &quot;stringr&quot;, que sirve para manipular texto</span></span>
+<span id="cb39-5"><a href="introducción-al-manejo-de-datos-en-r.html#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="introducción-al-manejo-de-datos-en-r.html#cb39-6" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">str_to_title</span>(nombres)</span>
+<span id="cb39-7"><a href="introducción-al-manejo-de-datos-en-r.html#cb39-7" aria-hidden="true" tabindex="-1"></a>nombres</span></code></pre></div>
+<pre><code>##  [1] &quot;Uno&quot;    &quot;Dos&quot;    &quot;Tres&quot;   &quot;Cuatro&quot; &quot;Cinco&quot;  &quot;Seis&quot;   &quot;Siete&quot;  &quot;Ocho&quot;  
+##  [9] &quot;Nueve&quot;  &quot;Diez&quot;</code></pre>
+<p>También podemos ordenarlos.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 11</span></span>
+<span id="cb41-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb41-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>), <span class="dv">100</span>)</span>
+<span id="cb41-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb41-3" aria-hidden="true" tabindex="-1"></a>num2</span></code></pre></div>
+<pre><code>##   [1] 717 706 621 218 226 524 615 971 750 986   8 926  17 573  55 267 886 120
+##  [19] 327 972 220 625 251 135 988 919 756 318 112 825 651 399 883 352 882 968
+##  [37] 224 588 595 586 847 104 510 744 314 813 356  37  88  69 592 290 158 869
+##  [55] 508 320 975 434 382 901 799 680 203 151 723  11 796 953 341 577 475 722
+##  [73] 255 937 684 138 896 766 261 113 263  82 337  99 386 411 788 344 328 908
+##  [91] 967 394 909 987 910 355 297 480 525 191</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 12</span></span>
+<span id="cb43-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(num2, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##   [1] 988 987 986 975 972 971 968 967 953 937 926 919 910 909 908 901 896 886
+##  [19] 883 882 869 847 825 813 799 796 788 766 756 750 744 723 722 717 706 684
+##  [37] 680 651 625 621 615 595 592 588 586 577 573 525 524 510 508 480 475 434
+##  [55] 411 399 394 386 382 356 355 352 344 341 337 328 327 320 318 314 297 290
+##  [73] 267 263 261 255 251 226 224 220 218 203 191 158 151 138 135 120 113 112
+##  [91] 104  99  88  82  69  55  37  17  11   8</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 13</span></span>
+<span id="cb45-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb45-2" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">sort</span>(nombres)</span>
+<span id="cb45-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb45-3" aria-hidden="true" tabindex="-1"></a>nombres</span></code></pre></div>
+<pre><code>##  [1] &quot;Cinco&quot;  &quot;Cuatro&quot; &quot;Diez&quot;   &quot;Dos&quot;    &quot;Nueve&quot;  &quot;Ocho&quot;   &quot;Seis&quot;   &quot;Siete&quot; 
+##  [9] &quot;Tres&quot;   &quot;Uno&quot;</code></pre>
+</div>
+<div id="vectores-de-tipo-factor" class="section level4 hasAnchor" number="2.4.1.2">
+<h4><span class="header-section-number">2.4.1.2</span> Vectores de tipo <em>factor</em><a href="introducción-al-manejo-de-datos-en-r.html#vectores-de-tipo-factor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Como acabamos de ver, R ordena los caracteres alfabéticamente. Esto es un problema porque no coincide con el significado de estas palabras (los nombres de los números)</p>
+<p>Es por eso que existe otro tipo de vectores: aquellos de tipo factor, que son cadenas de caracteres que se ordenan de cierta forma en particular, y a cuyo orden esta asignada cierta jerarquía ordinal, como los nombres de los números que representan valores.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 14</span></span>
+<span id="cb47-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb47-2" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">factor</span>(nombres, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;Uno&quot;</span>,<span class="st">&quot;Dos&quot;</span>,<span class="st">&quot;Tres&quot;</span>,<span class="st">&quot;Cuatro&quot;</span>,<span class="st">&quot;Cinco&quot;</span>,<span class="st">&quot;Seis&quot;</span>,<span class="st">&quot;Siete&quot;</span>,<span class="st">&quot;Ocho&quot;</span>,<span class="st">&quot;Nueve&quot;</span>,<span class="st">&quot;Diez&quot;</span> ))</span>
+<span id="cb47-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb47-3" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">sort</span>(nombres)</span>
+<span id="cb47-4"><a href="introducción-al-manejo-de-datos-en-r.html#cb47-4" aria-hidden="true" tabindex="-1"></a>nombres</span></code></pre></div>
+<pre><code>##  [1] Uno    Dos    Tres   Cuatro Cinco  Seis   Siete  Ocho   Nueve  Diez  
+## Levels: Uno Dos Tres Cuatro Cinco Seis Siete Ocho Nueve Diez</code></pre>
+</div>
+</div>
+<div id="matrices" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Matrices<a href="introducción-al-manejo-de-datos-en-r.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando tenemos distintos vectores relacionados entre sí podemos agruparlos en otros objetos, como son matrices y data frames:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 15 </span></span>
+<span id="cb49-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb49-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">10</span>) <span class="co"># crear una matriz con los números del uno al cien de 10x10</span></span>
+<span id="cb49-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb49-3" aria-hidden="true" tabindex="-1"></a>m1 <span class="co">#mostrar la matriz</span></span></code></pre></div>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]    1   11   21   31   41   51   61   71   81    91
+##  [2,]    2   12   22   32   42   52   62   72   82    92
+##  [3,]    3   13   23   33   43   53   63   73   83    93
+##  [4,]    4   14   24   34   44   54   64   74   84    94
+##  [5,]    5   15   25   35   45   55   65   75   85    95
+##  [6,]    6   16   26   36   46   56   66   76   86    96
+##  [7,]    7   17   27   37   47   57   67   77   87    97
+##  [8,]    8   18   28   38   48   58   68   78   88    98
+##  [9,]    9   19   29   39   49   59   69   79   89    99
+## [10,]   10   20   30   40   50   60   70   80   90   100</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a>m1<span class="sc">%*%</span>m1 <span class="co"># multiplicación de matriz</span></span></code></pre></div>
+<pre><code>##       [,1] [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10]
+##  [1,] 3355 7955 12555 17155 21755 26355 30955 35555 40155 44755
+##  [2,] 3410 8110 12810 17510 22210 26910 31610 36310 41010 45710
+##  [3,] 3465 8265 13065 17865 22665 27465 32265 37065 41865 46665
+##  [4,] 3520 8420 13320 18220 23120 28020 32920 37820 42720 47620
+##  [5,] 3575 8575 13575 18575 23575 28575 33575 38575 43575 48575
+##  [6,] 3630 8730 13830 18930 24030 29130 34230 39330 44430 49530
+##  [7,] 3685 8885 14085 19285 24485 29685 34885 40085 45285 50485
+##  [8,] 3740 9040 14340 19640 24940 30240 35540 40840 46140 51440
+##  [9,] 3795 9195 14595 19995 25395 30795 36195 41595 46995 52395
+## [10,] 3850 9350 14850 20350 25850 31350 36850 42350 47850 53350</code></pre>
+<p>Cada uno de los elementos que conforman la matriz pueden “llamarse” para ser utilizados como si fueran un objeto o–como en el ejemplo de la multiplicación de matrices–pueden utilizarse como un conjunto.</p>
+<p>Para llamarlos podemos hacerlo por su posición (noten las comas en las filas y columnas entre corchetes):
+Llamamos una columna completa:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 16</span></span>
+<span id="cb53-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb53-2" aria-hidden="true" tabindex="-1"></a>m1[,<span class="dv">10</span>]</span></code></pre></div>
+<pre><code>##  [1]  91  92  93  94  95  96  97  98  99 100</code></pre>
+<p>una fila:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 17</span></span>
+<span id="cb55-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb55-2" aria-hidden="true" tabindex="-1"></a>m1[<span class="dv">10</span>,]</span></code></pre></div>
+<pre><code>##  [1]  10  20  30  40  50  60  70  80  90 100</code></pre>
+<p>o un elemento en particular:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 18</span></span>
+<span id="cb57-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb57-2" aria-hidden="true" tabindex="-1"></a>m1[<span class="dv">10</span>,<span class="dv">10</span>]</span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+</div>
+<div id="el-dataframe" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> El <code>dataframe</code><a href="introducción-al-manejo-de-datos-en-r.html#el-dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un objeto parecido a la matriz, pero con la capacidad de almacenar vectores de números y caracteres es el <code>dataframe</code>. En él, podemos almacenar vectores de distintas cosas asociados entre sí. Por ejemplo, nuestra lista de números y sus nombres:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 19</span></span>
+<span id="cb59-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Recordamos nuestros vectores: </span></span>
+<span id="cb59-4"><a href="introducción-al-manejo-de-datos-en-r.html#cb59-4" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb59-5"><a href="introducción-al-manejo-de-datos-en-r.html#cb59-5" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Uno&quot;</span>, <span class="st">&quot;Dos&quot;</span>, <span class="st">&quot;Tres&quot;</span>, <span class="st">&quot;Cuatro&quot;</span>, <span class="st">&quot;Cinco&quot;</span>, <span class="st">&quot;Seis&quot;</span>, <span class="st">&quot;Siete&quot;</span>, <span class="st">&quot;Ocho&quot;</span>, <span class="st">&quot;Nueve&quot;</span>, <span class="st">&quot;Diez&quot;</span>)</span>
+<span id="cb59-6"><a href="introducción-al-manejo-de-datos-en-r.html#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-7"><a href="introducción-al-manejo-de-datos-en-r.html#cb59-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">numeros=</span>num, <span class="at">nombres=</span>nombres)</span>
+<span id="cb59-8"><a href="introducción-al-manejo-de-datos-en-r.html#cb59-8" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    numeros nombres
+## 1        1     Uno
+## 2        2     Dos
+## 3        3    Tres
+## 4        4  Cuatro
+## 5        5   Cinco
+## 6        6    Seis
+## 7        7   Siete
+## 8        8    Ocho
+## 9        9   Nueve
+## 10      10    Diez</code></pre>
+</div>
+</div>
+<div id="selección-de-objetos-dentro-de-una-base-de-datos" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Selección de objetos dentro de una base de datos<a href="introducción-al-manejo-de-datos-en-r.html#selección-de-objetos-dentro-de-una-base-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Podemos llamar cada objeto de la misma manera que lo hicimos con la matriz.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 20</span></span>
+<span id="cb61-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb61-2" aria-hidden="true" tabindex="-1"></a>df[,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 21</span></span>
+<span id="cb63-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb63-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span>,]</span></code></pre></div>
+<pre><code>##   numeros nombres
+## 1       1     Uno</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 22</span></span>
+<span id="cb65-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb65-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span>,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div id="teoría-de-conjuntos-álgebra-y-los-lenguajes-de-programación" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Teoría de conjuntos, álgebra y los lenguajes de programación<a href="introducción-al-manejo-de-datos-en-r.html#teoría-de-conjuntos-álgebra-y-los-lenguajes-de-programación" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La programación tiene una estructura lógica. Cuando hacemos estos filtros para seleccionar datos podemos darnos cuenta de la similitud con las operaciones básicas del álgebra de conjuntos: union, intersección, complemento.</p>
+<div class="figure">
+<img src="images/Cap%C3%ADtulo%201/venn_diagramm.png" alt="" />
+<p class="caption">Cada círculo podemos pensarlo como un vector asociado a un objeto dataframe, o lo que es lo mismo, como una variable de una base de datos</p>
+</div>
+<p>Teniendo en cuenta esto, la mayor parte del trabajo es saber seleccionar conjuntos y subconjuntos de datos de acuerdo a las características que deseemos.</p>
+<div class="figure">
+<img src="images/Cap%C3%ADtulo%201/operadores.JPG" alt="" />
+<p class="caption">Aquí una lista de los principales operadores lógicos</p>
+</div>
+<p>Así, cuando queremos pedir la unión de dos atributos podemos usar el operador <code>|</code>:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 23</span></span>
+<span id="cb67-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb67-2" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>numeros<span class="sc">==</span><span class="dv">3</span> <span class="sc">|</span> df<span class="sc">$</span>numeros<span class="sc">==</span><span class="dv">5</span>,]</span></code></pre></div>
+<pre><code>##   numeros nombres
+## 3       3    Tres
+## 5       5   Cinco</code></pre>
+<p>O, alternativamente, podemos usar el operador <code>%in%</code>:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 24</span></span>
+<span id="cb69-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb69-2" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>numeros<span class="sc">%in%</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>),]</span></code></pre></div>
+<pre><code>##   numeros nombres
+## 3       3    Tres
+## 5       5   Cinco</code></pre>
+<p>Como vimos, las órdenes que se le dan a R son cumplidas literalmente. Otro elemento adicional que debemos recalcar es el uso de parentesis que identifica los comandos de órdenes que R tiene. Siempre uqe sean coherentes, R resolverá y ejecutará comandos escritos dentro de otro comando.</p>
+<p>También los vectores que conforman el dataframe</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 25</span></span>
+<span id="cb71-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb71-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>nombres</span></code></pre></div>
+<pre><code>##  [1] &quot;Uno&quot;    &quot;Dos&quot;    &quot;Tres&quot;   &quot;Cuatro&quot; &quot;Cinco&quot;  &quot;Seis&quot;   &quot;Siete&quot;  &quot;Ocho&quot;  
+##  [9] &quot;Nueve&quot;  &quot;Diez&quot;</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb73-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>numeros2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">50</span>,<span class="dv">5</span>) <span class="co"># Acá le ordenamos a R que haga una secuencua de 5 en 5 desde el 5 al 50</span></span></code></pre></div>
+<p>O seleccionar algunos atributos que cumplan ciertas características:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 26</span></span>
+<span id="cb74-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb74-2" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>numeros<span class="sc">&gt;</span><span class="dv">5</span>,<span class="st">&quot;numeros&quot;</span>]</span></code></pre></div>
+<pre><code>## [1]  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb76-1" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>numeros<span class="sc">&gt;</span><span class="dv">5</span>,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1]  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb78-1" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>nombres<span class="sc">==</span><span class="st">&quot;Uno&quot;</span>,<span class="st">&quot;numeros&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Los atributos pueden filtrarse por más de una característica:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 27</span></span>
+<span id="cb80-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb80-2" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>numeros<span class="sc">&gt;</span><span class="dv">5</span> <span class="sc">&amp;</span> df<span class="sc">$</span>numeros<span class="sc">&lt;=</span><span class="dv">9</span> <span class="sc">&amp;</span> df<span class="sc">$</span>numeros<span class="sc">!=</span><span class="dv">7</span>,<span class="st">&quot;numeros&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] 6 8 9</code></pre>
+</div>
+</div>
+<div id="algunas-operaciones-básicas-que-pueden-hacerse-con-r" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Algunas operaciones básicas que pueden hacerse con <code>R</code><a href="introducción-al-manejo-de-datos-en-r.html#algunas-operaciones-básicas-que-pueden-hacerse-con-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>R</code> tiene funciones que realizan operaciones básicas como promedios, sumas, raíces, logaritmos, desviaciones estándar, etc.</p>
+<p>Existen numerosos manuales y resumenes de las principales funciones, como esta que es muy completa y les sugiero tengan a la mano:</p>
+<p><a href="https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf" class="uri">https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf</a></p>
+<div class="figure">
+<img src="images/Cap%C3%ADtulo%201/meme1.jpeg" alt="" />
+<p class="caption">Meme para distraerse un poco</p>
+</div>
+<div id="importando-datos-con-r" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Importando datos con R<a href="introducción-al-manejo-de-datos-en-r.html#importando-datos-con-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para una demostración rápida, haremos el archivo de nuestras calificaciones. Para ello utilizaremos un paquete llamado <code>openxlsx</code>. Si es la primera vez que usamos R, es muy probable que no lo tengamos instalado. Podemos instalarlo:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;openxlsx&quot;</span>)</span></code></pre></div>
+<p>Posteriormente, cargamos el paquete:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span></code></pre></div>
+<p>Y ahora sí, cargamos el archivo. Lo mas fácil es que esté en nuestro directorio de trabajo, para no hacer una ruta mas grande. Un directorio de trabajo es útil porque sabemos que todos los resultados que nos arroje el programa apareceran así.</p>
+<div id="seleccionando-el-directorio-de-trabajo" class="section level4 hasAnchor" number="2.6.1.1">
+<h4><span class="header-section-number">2.6.1.1</span> Seleccionando el directorio de trabajo<a href="introducción-al-manejo-de-datos-en-r.html#seleccionando-el-directorio-de-trabajo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En una de las ventanas de RStudio, tenemos un explorador de las carpetas de nuestro equipo que nos permite ver cual es el actual directorio de trabajo y el resto de archivos de nuestra computadora. De hecho, nos conduce al explorador de archivos en windows o a finder en mac.</p>
+<p><img src="images/Cap%C3%ADtulo%201/setwd.JPG" /></p>
+<p>Para utilizarlo simplemente vamos a una de las ventanas de nuestra consola de Rstudio, en la imagen la inferior derecha y seleccionamos la pestaña files. De ahí, hacemos clic en los tres puntos y nos aparece el explorador. encontramos la carpeta en donde queramos establecer nuestro entorno de trabajo y le damos “open”.</p>
+<p>Lo siguiente es establecer dicha carpeta como entorno de trabajo de R. Lo hacemos seleccionando la opcion “Set as working directory” en el icono de engrane de esa misma pestaña:
+<img src="images/Cap%C3%ADtulo%201/setwd2.JPG" /></p>
+<p>Ahora sí, cargamos el archivo. Usaremos de ejemplo el archivo de calificaciones de ustedes mismos.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb84-1" aria-hidden="true" tabindex="-1"></a>calificaciones <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;Calificaciones_todos.xlsx&quot;</span>)</span>
+<span id="cb84-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(calificaciones) <span class="co"># para mostrar las calificaciones</span></span></code></pre></div>
+<pre><code>##                          Materia Calificación Semestre Sexo Área       Xi-U
+## 1          Pensamiento económico          7.6        1    H &lt;NA&gt; -1.4321343
+## 2 Hist Arte México I prehisp vir          9.2        1    H &lt;NA&gt;  0.1678657
+## 3 Habilidades univ com niv único          7.9        1    H &lt;NA&gt; -1.1321343
+## 4              Ser universitario          8.6        1    H &lt;NA&gt; -0.4321343
+## 5       Ideas Políticas Sociales          8.2        1    H &lt;NA&gt; -0.8321343
+## 6             Política Comparada          8.8        1    H &lt;NA&gt; -0.2321343
+##     (Xi-U)^2                      PROMEDIO   X9
+## 1 2.05100863            9.0321342925659565 &lt;NA&gt;
+## 2 0.02817890                 Desv Estandar &lt;NA&gt;
+## 3 1.28172806           0.79815122583555609 &lt;NA&gt;
+## 4 0.18674005             Suma desviaciones &lt;NA&gt;
+## 5 0.69244748       -7.6942896498621849E-12 &lt;NA&gt;
+## 6 0.05388633 Suma Desviaciones al cuadrado    N</code></pre>
+</div>
+</div>
+</div>
+<div id="operaciones-básicas" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Operaciones básicas<a href="introducción-al-manejo-de-datos-en-r.html#operaciones-básicas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Media</span></span>
+<span id="cb86-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(calificaciones<span class="sc">$</span>Calificación)</span></code></pre></div>
+<pre><code>## [1] 9.032134</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Media para hombres o para mujeres</span></span>
+<span id="cb88-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(calificaciones[calificaciones<span class="sc">$</span>Sexo<span class="sc">==</span><span class="st">&quot;H&quot;</span>,]<span class="sc">$</span>Calificación)</span></code></pre></div>
+<pre><code>## [1] 8.968282</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(calificaciones[calificaciones<span class="sc">$</span>Sexo<span class="sc">==</span><span class="st">&quot;M&quot;</span>,]<span class="sc">$</span>Calificación)</span></code></pre></div>
+<pre><code>## [1] 9.056013</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suma</span></span>
+<span id="cb92-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(calificaciones<span class="sc">$</span>Calificación)</span></code></pre></div>
+<pre><code>## [1] 7532.8</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Varianza y Desviación estándar</span></span>
+<span id="cb94-2"><a href="introducción-al-manejo-de-datos-en-r.html#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-3"><a href="introducción-al-manejo-de-datos-en-r.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(calificaciones<span class="sc">$</span>Calificación)</span></code></pre></div>
+<pre><code>## [1] 0.6370454</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="introducción-al-manejo-de-datos-en-r.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(calificaciones<span class="sc">$</span>Calificación)</span></code></pre></div>
+<pre><code>## [1] 0.7981512</code></pre>
+</div>
+<div id="ejercicio" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Ejercicio:<a href="introducción-al-manejo-de-datos-en-r.html#ejercicio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En R: Importa la base de datos de tus calificaciones. Añadele una columna de semestre antes de importarla a R.</p>
+<p>Calcula: promedio y desviación estándar de tus calificaciones.
+Promedio y desviación estándar para las materias que cursaste en primer semestre y las del último semestre que hayas cursado.</p>
+<p>Construye en excel intervalos de confianza al 95% y ponlos en una hoja aparte de los datos que importaste de R ¿Tus calificaciones de primer semestre son diferentes siginficativamente de las del último?</p>
+<div id="algunos-manuales-links-útiles-y-bibliografía-complementaria" class="section level4 hasAnchor" number="2.8.0.1">
+<h4><span class="header-section-number">2.8.0.1</span> Algunos manuales, links útiles y bibliografía complementaria:<a href="introducción-al-manejo-de-datos-en-r.html#algunos-manuales-links-útiles-y-bibliografía-complementaria" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Hoja resumen con principales funciones:
+<a href="https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf" class="uri">https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf</a></p>
+<p>El Arte de Programar en R
+<a href="https://cran.r-project.org/doc/contrib/Santana_El_arte_de_programar_en_R.pdf" class="uri">https://cran.r-project.org/doc/contrib/Santana_El_arte_de_programar_en_R.pdf</a></p>
+<p>la guía pirata de R
+<a href="https://bookdown.org/ndphillips/YaRrr/rrelationship.html?fbclid=IwAR3QP_IrfjGTxuObjm-ODa4iikgbdRQtxqxTKfDyc04czgGxRhtNoL3JCbo" class="uri">https://bookdown.org/ndphillips/YaRrr/rrelationship.html?fbclid=IwAR3QP_IrfjGTxuObjm-ODa4iikgbdRQtxqxTKfDyc04czgGxRhtNoL3JCbo</a></p>
+<p>R for data science
+<a href="https://r4ds.had.co.nz/introduction.html#other-packages" class="uri">https://r4ds.had.co.nz/introduction.html#other-packages</a></p>
+<p>El manual de R
+<a href="https://cran.r-project.org/doc/manuals/R-intro.pdf?fbclid=IwAR1pkuc64J9QmPFdvWo-VLrvQE1UZrDf3bJLpraRP_ArIOqQH4QMzFPRv3g" class="uri">https://cran.r-project.org/doc/manuals/R-intro.pdf?fbclid=IwAR1pkuc64J9QmPFdvWo-VLrvQE1UZrDf3bJLpraRP_ArIOqQH4QMzFPRv3g</a></p>
+<p>Crear pagina web con blogdown</p>
+<p><a href="http://destio.us.es/calvo/post/como-he-creado-mi-pagina-web-personal-con-el-paquete-r-blogdown/?fbclid=IwAR2hQ7MKxG6y1rMn5m1793MY-OBTtbP9o5F4LIqQIUblqIUey7Bx2fp7cWM" class="uri">http://destio.us.es/calvo/post/como-he-creado-mi-pagina-web-personal-con-el-paquete-r-blogdown/?fbclid=IwAR2hQ7MKxG6y1rMn5m1793MY-OBTtbP9o5F4LIqQIUblqIUey7Bx2fp7cWM</a></p>
+</div>
+</div>
+<div id="bibliografía" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Bibliografía<a href="introducción-al-manejo-de-datos-en-r.html#bibliografía" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Wickham H (2021). stringr: Simple, Consistent Wrappers for Common String Operations. <a href="http://stringr.tidyverse.org" class="uri">http://stringr.tidyverse.org</a>, <a href="https://github.com/tidyverse/stringr" class="uri">https://github.com/tidyverse/stringr</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

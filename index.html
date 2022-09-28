@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Métodos Cuantitativos para Relaciones Internacionales</title>
+  <meta name="description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Métodos Cuantitativos para Relaciones Internacionales" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Métodos Cuantitativos para Relaciones Internacionales" />
+  
+  <meta name="twitter:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+<meta name="author" content="Armando González Díaz. armando.gonzalezdi@anahuac.mx  www.twitter.com/Ar_GonTr" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="Anahuac.ico" type="image/x-icon" />
+
+<link rel="next" href="introducción-al-manejo-de-datos-en-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Instalación y primeros pasos con R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#windows"><i class="fa fa-check"></i><b>1.1</b> Windows</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#descargar-e-instalar-r"><i class="fa fa-check"></i><b>1.1.1</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#instalar-rtools"><i class="fa fa-check"></i><b>1.1.2</b> Instalar <code>Rtools</code></a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Instalación de <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#instalación-en-mac"><i class="fa fa-check"></i><b>1.2</b> Instalación en Mac</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#instalación-de-xquartz"><i class="fa fa-check"></i><b>1.2.1</b> Instalación de <code>Xquartz</code></a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#descargar-e-instalar-r-1"><i class="fa fa-check"></i><b>1.2.2</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Instalar <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#lo-logramos"><i class="fa fa-check"></i><b>1.3</b> ¡Lo logramos!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html"><i class="fa fa-check"></i><b>2</b> Introducción al manejo de datos en R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#paquetes-necesarios"><i class="fa fa-check"></i><b>2.1</b> Paquetes necesarios</a></li>
+<li class="chapter" data-level="2.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#repaso-operaciones-básicas-y-primera-interacción-con-r"><i class="fa fa-check"></i><b>2.2</b> Repaso: Operaciones básicas y primera interacción con R</a></li>
+<li class="chapter" data-level="2.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#instalación-y-carga-de-paquetes."><i class="fa fa-check"></i><b>2.3</b> Instalación y carga de paquetes.</a></li>
+<li class="chapter" data-level="2.4" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#principales-tipos-de-objetos-valores-vectores-matrices-y-data.frame"><i class="fa fa-check"></i><b>2.4</b> Principales tipos de objetos: valores, vectores, matrices y <code>data.frame</code></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#vectores"><i class="fa fa-check"></i><b>2.4.1</b> vectores</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#matrices"><i class="fa fa-check"></i><b>2.4.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#el-dataframe"><i class="fa fa-check"></i><b>2.4.3</b> El <code>dataframe</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#selección-de-objetos-dentro-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.5</b> Selección de objetos dentro de una base de datos</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#teoría-de-conjuntos-álgebra-y-los-lenguajes-de-programación"><i class="fa fa-check"></i><b>2.5.1</b> Teoría de conjuntos, álgebra y los lenguajes de programación</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#algunas-operaciones-básicas-que-pueden-hacerse-con-r"><i class="fa fa-check"></i><b>2.6</b> Algunas operaciones básicas que pueden hacerse con <code>R</code></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#importando-datos-con-r"><i class="fa fa-check"></i><b>2.6.1</b> Importando datos con R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.7</b> Operaciones básicas</a></li>
+<li class="chapter" data-level="2.8" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#ejercicio"><i class="fa fa-check"></i><b>2.8</b> Ejercicio:</a></li>
+<li class="chapter" data-level="2.9" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#bibliografía"><i class="fa fa-check"></i><b>2.9</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><i class="fa fa-check"></i><b>3</b> Exprimiendo una base de datos: obtener datos útiles.</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#instalamos-y-cargamos-paquete"><i class="fa fa-check"></i><b>3.1</b> Instalamos y cargamos paquete</a></li>
+<li class="chapter" data-level="3.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-pipe-operator"><i class="fa fa-check"></i><b>3.2</b> El <code>pipe</code> operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-binomio-group_by-summarise"><i class="fa fa-check"></i><b>3.3</b> El binomio <code>group_by + summarise</code></a></li>
+<li class="chapter" data-level="3.4" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#creación-de-variables"><i class="fa fa-check"></i><b>3.4</b> Creación de variables</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#r-base"><i class="fa fa-check"></i><b>3.4.1</b> <code>R base</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#group_by-mutate"><i class="fa fa-check"></i><b>3.4.2</b> <code>group_by + mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#ejercicios"><i class="fa fa-check"></i><b>3.5</b> Ejercicios:</a></li>
+<li class="chapter" data-level="3.6" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#bibliografía-1"><i class="fa fa-check"></i><b>3.6</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html"><i class="fa fa-check"></i><b>4</b> Regresión lineal: Repaso.</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#recordamos-lo-que-habíamos-visto-en-clase"><i class="fa fa-check"></i><b>4.1</b> Recordamos lo que habíamos visto en clase:</a></li>
+<li class="chapter" data-level="4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#heterocedasticidad"><i class="fa fa-check"></i><b>4.2</b> Heterocedasticidad</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.2.1</b> 1) Transformación de variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#el-uso-de-errores-estándar-robustos"><i class="fa fa-check"></i><b>4.2.2</b> 2) El uso de errores estándar robustos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#factor-de-inflación-de-la-varianza-vif"><i class="fa fa-check"></i><b>4.3</b> Factor de inflación de la varianza (VIF)</a></li>
+<li class="chapter" data-level="4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#interpretacion-de-coeficientes"><i class="fa fa-check"></i><b>4.4</b> Interpretacion de coeficientes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#la-r-cuadrada"><i class="fa fa-check"></i><b>4.4.1</b> La R cuadrada</a></li>
+<li class="chapter" data-level="4.4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#los-coeficientes-de-las-variables-independientes."><i class="fa fa-check"></i><b>4.4.2</b> Los coeficientes de las variables independientes.</a></li>
+<li class="chapter" data-level="4.4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#ejercicio-interpretar-los-resultados-de-esta-regresión"><i class="fa fa-check"></i><b>4.4.3</b> Ejercicio: interpretar los resultados de esta regresión</a></li>
+<li class="chapter" data-level="4.4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#bibliografía-2"><i class="fa fa-check"></i><b>4.4.4</b> Bibliografía</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>5</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regresión-logística.html"><a href="regresión-logística.html#importar-la-base-de-datos"><i class="fa fa-check"></i><b>5.1</b> Importar la base de datos</a></li>
+<li class="chapter" data-level="5.2" data-path="regresión-logística.html"><a href="regresión-logística.html#descripción-de-la-base"><i class="fa fa-check"></i><b>5.2</b> Descripción de la base</a></li>
+<li class="chapter" data-level="5.3" data-path="regresión-logística.html"><a href="regresión-logística.html#limpieza-de-bases-de-datos"><i class="fa fa-check"></i><b>5.3</b> Limpieza de bases de datos</a></li>
+<li class="chapter" data-level="5.4" data-path="regresión-logística.html"><a href="regresión-logística.html#para-qué-sirve-este-modelo"><i class="fa fa-check"></i><b>5.4</b> ¿Para qué sirve este modelo?</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#información-adicional"><i class="fa fa-check"></i><b>5.4.1</b> Información adicional:</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos Cuantitativos para Relaciones Internacionales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Métodos Cuantitativos para Relaciones Internacionales</h1>
+<p class="author"><em>Armando González Díaz.<img src="images/Anahuac.svg" width="200" height="200" alt="Portada" align="right" style="margin: 0 1em 0 1em" /><br><a href="mailto:armando.gonzalezdi@anahuac.mx" class="email">armando.gonzalezdi@anahuac.mx</a> <br>www.twitter.com/Ar_GonTr</em></p>
+<p class="date"><em>28/09/2022</em></p>
+</div>
+<div id="instalación-y-primeros-pasos-con-r" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Instalación y primeros pasos con R<a href="index.html#instalación-y-primeros-pasos-con-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Estas lineas están pensadas como apoyo para el curso <strong><em>Métodos cuantitativos para las ciencias sociales</em></strong>.</p>
+<p>Además del acercamiento a la estadística aplicada, existen una serie de habilidades que aprenderemos: el manejo del lenguaje de programación en <code>R</code></p>
+<p>Una de las grandes ventajas de este programa es que es software libre y de código abierto. Para hablar con más propiedad, no es un software sino un lenguaje orientado a objetos (después veremos que es eso) diseñado por personas que utilizan fundamentalmente estadística aplicada a la investigación científica. Como todos los lenguajes, sigue evolucionando y creciendo. Justamente su filosofía <em>open source</em> le ha permitido crecer y convertirse en el software de análisis estadístico mas usado en ciencias sociales y uno de los más utilizados, solo después de <code>Python</code>.</p>
+<p>Con el tiempo, <code>R</code> también se volvió muy popular en entornos laborales, ya que permite crear visualizaciones, análisis de datos y reportes automáticos totalmente personalizables,intuitivos y muy atractivos visualmente. Sobre todo cuando se tiene la necesidad de utilizar bases de datos y/o metodos estadísticos fuera del alcance de hojas de cálculo como excel.</p>
+<p>Instalar R en cada sistema operativo es un poco distinto, por lo cual seguiremos instrucciones específicas de acuerdo a nuestro sistema operativo.</p>
+<div id="windows" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Windows<a href="index.html#windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para quienes trabajamos en windows, esto consta de tres pasos:</p>
+<ol style="list-style-type: decimal">
+<li>instalar <code>R</code></li>
+<li>Descargar e instalar Rtools</li>
+<li>Descargar e instalar Rstudio</li>
+</ol>
+<div id="descargar-e-instalar-r" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Descargar e instalar <code>R</code><a href="index.html#descargar-e-instalar-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>vamos a su pagina web: <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a></p>
+<p>Para instalarlo sólo necesitamos descargar la versión correspondiente a nuestro sistema operativo y ejecutar el archivo instalable:</p>
+<div class="figure">
+<img src="images/installation/win/descargar.PNG" alt="" />
+<p class="caption">La página principal tiene ya un enlace de descarga. Damos click en la última versión</p>
+</div>
+<div class="figure">
+<img src="images/installation/win/espejos.PNG" alt="" />
+<p class="caption">Nos lleva a seleccionar un servidor donde descargarlo. Podemos seleccionar cualquiera</p>
+</div>
+<div class="figure">
+<img src="images/installation/win/base.PNG" alt="" />
+<p class="caption">Seleccionamos windows, y después la opción base</p>
+</div>
+<div class="figure">
+<img src="images/installation/win/descargar2.PNG" alt="" />
+<p class="caption">Presionamos Descargar <code>R</code></p>
+</div>
+<div class="figure">
+<img src="images/installation/win/instalador.PNG" alt="" />
+<p class="caption">Ejecutamos el instalador y seguimos las instrucciones</p>
+</div>
+<p>¡El primer paso está completo!
+De hecho ya podemos usar <code>R</code>, pero para sacarle más jugo, instalaremos <code>Rtools</code> y <code>Rstudio</code></p>
+</div>
+<div id="instalar-rtools" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Instalar <code>Rtools</code><a href="index.html#instalar-rtools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>Rtools</code> es una herramienta que nos ayuda a añadir funcionalidad a R. también es de código abierto y se descarga desde su página sin necesidad de adquirir una licencia:</p>
+<p><a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></p>
+<div class="figure">
+<img src="images/installation/win/rtools.PNG" alt="" />
+<p class="caption">Descargamos, ejecutamos y seguimos las instrucciones</p>
+</div>
+<p>Y Listo. :=)</p>
+</div>
+<div id="instalación-de-rstudio" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Instalación de <code>Rstudio</code><a href="index.html#instalación-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>Rstudio</code> es un entorno de desarrollo integrado (IDE, por sus siglas en inglés) que incluye un editor de código, entre otras funciones, que hacen más fácil la interacción con <code>R</code>: señalan posibles errores en el código, lo hacen más legible y permite compilar reportes o publicaciones como este manual de instrucciones. Actualmente es el IDE más popular. Si bien no es software libre, es de código abierto y tiene una versión gratuita.</p>
+<p>Puede descargarse en su página (Para usasrse es necesario instalar primero <code>R</code>):</p>
+<p><a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
+<div class="figure">
+<img src="images/installation/win/rstudiodes.PNG" alt="" />
+<p class="caption">Seleccionamos la versión libre de escritorio</p>
+</div>
+<div class="figure">
+<img src="images/installation/win/RS_version.PNG" alt="" />
+<p class="caption">Y elegimos el instalador para nuestro sistema operativo</p>
+</div>
+<div class="figure">
+<img src="images/installation/win/instalarrstudio.PNG" alt="" />
+<p class="caption">Seguimos instrucciones</p>
+</div>
+</div>
+</div>
+<div id="instalación-en-mac" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Instalación en Mac<a href="index.html#instalación-en-mac" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En el caso de Mac tiene que instalarse (o reinstalarse) <code>Xquartz</code>, que es necesario para que <code>R</code> pueda correr. Los pasos son:</p>
+<ol style="list-style-type: decimal">
+<li>Descargar e instalar <code>Xquartz</code></li>
+<li>Descargar e instalar <code>R</code></li>
+<li>Instalar <code>Rstudio</code></li>
+</ol>
+<div id="instalación-de-xquartz" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Instalación de <code>Xquartz</code><a href="index.html#instalación-de-xquartz" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En Mac tenemos que asegurarnos que tenemos <code>XQuartz</code>. Lo descargamos de su página
+<a href="https://www.xquartz.org/" class="uri">https://www.xquartz.org/</a> e instalamos</p>
+<div class="figure">
+<img src="images/installation/mac/xquartz.PNG" alt="" />
+<p class="caption">Descargamos el archivo, lo ejecutamos y seguimos instrucciones</p>
+</div>
+</div>
+<div id="descargar-e-instalar-r-1" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Descargar e instalar <code>R</code><a href="index.html#descargar-e-instalar-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para la instalación en Mac, debemos saber que tipo de CPU tenemos. Existen dos posibilidades: Un procesador intel, que aplica para las computadoras que fueron producidas entre 2008 y 2020 o los M1, que tienen las Mac de 2021 en adelante. Eso es importante porque de acuerdo con ello es el archivo que debemos instalar.</p>
+<p>Si no sabemos que procesador tiene nuestra mac, podemos averiguarlo yendo a la manzanita y haciendo clic en acerca de esta mac. Una vez que sabemos que procesador tenemos, vamos a su pagina web: <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a> y hay que seleccionar el instalador que corresponde a nuestro tipo de procesador.</p>
+<div class="figure">
+<img src="images/installation/mac/descargar.PNG" alt="" />
+<p class="caption">descargamos y seguimos instrucciones de instalacion</p>
+</div>
+</div>
+<div id="instalar-rstudio" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Instalar <code>Rstudio</code><a href="index.html#instalar-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nos vamos a la pagina web:</p>
+<p><a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
+<p>y buscamos:</p>
+<div class="figure">
+<img src="images/installation/mac/rstudio.PNG" alt="" />
+<p class="caption">Descargamos, ejecutamos y seguimos instrucciones</p>
+</div>
+</div>
+</div>
+<div id="lo-logramos" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> ¡Lo logramos!<a href="index.html#lo-logramos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una vez tenemos ya instalado <code>R</code> y <code>Rstudio</code>, una vista rápida a la consola de <code>Rstudio</code></p>
+<div class="figure">
+<img src="images/installation/win/consolaRS.PNG" alt="" />
+<p class="caption">Esta es la consola de RStudio</p>
+</div>
+<p>Hasta la siguiente sesión :)</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introducción-al-manejo-de-datos-en-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

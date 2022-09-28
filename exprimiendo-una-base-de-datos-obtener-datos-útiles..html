@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Exprimiendo una base de datos: obtener datos útiles. | Métodos Cuantitativos para Relaciones Internacionales</title>
+  <meta name="description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Exprimiendo una base de datos: obtener datos útiles. | Métodos Cuantitativos para Relaciones Internacionales" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Exprimiendo una base de datos: obtener datos útiles. | Métodos Cuantitativos para Relaciones Internacionales" />
+  
+  <meta name="twitter:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+<meta name="author" content="Armando González Díaz. armando.gonzalezdi@anahuac.mx  www.twitter.com/Ar_GonTr" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="Anahuac.ico" type="image/x-icon" />
+<link rel="prev" href="introducción-al-manejo-de-datos-en-r.html"/>
+<link rel="next" href="regresión-lineal-repaso..html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Instalación y primeros pasos con R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#windows"><i class="fa fa-check"></i><b>1.1</b> Windows</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#descargar-e-instalar-r"><i class="fa fa-check"></i><b>1.1.1</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#instalar-rtools"><i class="fa fa-check"></i><b>1.1.2</b> Instalar <code>Rtools</code></a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Instalación de <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#instalación-en-mac"><i class="fa fa-check"></i><b>1.2</b> Instalación en Mac</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#instalación-de-xquartz"><i class="fa fa-check"></i><b>1.2.1</b> Instalación de <code>Xquartz</code></a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#descargar-e-instalar-r-1"><i class="fa fa-check"></i><b>1.2.2</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Instalar <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#lo-logramos"><i class="fa fa-check"></i><b>1.3</b> ¡Lo logramos!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html"><i class="fa fa-check"></i><b>2</b> Introducción al manejo de datos en R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#paquetes-necesarios"><i class="fa fa-check"></i><b>2.1</b> Paquetes necesarios</a></li>
+<li class="chapter" data-level="2.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#repaso-operaciones-básicas-y-primera-interacción-con-r"><i class="fa fa-check"></i><b>2.2</b> Repaso: Operaciones básicas y primera interacción con R</a></li>
+<li class="chapter" data-level="2.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#instalación-y-carga-de-paquetes."><i class="fa fa-check"></i><b>2.3</b> Instalación y carga de paquetes.</a></li>
+<li class="chapter" data-level="2.4" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#principales-tipos-de-objetos-valores-vectores-matrices-y-data.frame"><i class="fa fa-check"></i><b>2.4</b> Principales tipos de objetos: valores, vectores, matrices y <code>data.frame</code></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#vectores"><i class="fa fa-check"></i><b>2.4.1</b> vectores</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#matrices"><i class="fa fa-check"></i><b>2.4.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#el-dataframe"><i class="fa fa-check"></i><b>2.4.3</b> El <code>dataframe</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#selección-de-objetos-dentro-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.5</b> Selección de objetos dentro de una base de datos</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#teoría-de-conjuntos-álgebra-y-los-lenguajes-de-programación"><i class="fa fa-check"></i><b>2.5.1</b> Teoría de conjuntos, álgebra y los lenguajes de programación</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#algunas-operaciones-básicas-que-pueden-hacerse-con-r"><i class="fa fa-check"></i><b>2.6</b> Algunas operaciones básicas que pueden hacerse con <code>R</code></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#importando-datos-con-r"><i class="fa fa-check"></i><b>2.6.1</b> Importando datos con R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.7</b> Operaciones básicas</a></li>
+<li class="chapter" data-level="2.8" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#ejercicio"><i class="fa fa-check"></i><b>2.8</b> Ejercicio:</a></li>
+<li class="chapter" data-level="2.9" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#bibliografía"><i class="fa fa-check"></i><b>2.9</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><i class="fa fa-check"></i><b>3</b> Exprimiendo una base de datos: obtener datos útiles.</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#instalamos-y-cargamos-paquete"><i class="fa fa-check"></i><b>3.1</b> Instalamos y cargamos paquete</a></li>
+<li class="chapter" data-level="3.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-pipe-operator"><i class="fa fa-check"></i><b>3.2</b> El <code>pipe</code> operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-binomio-group_by-summarise"><i class="fa fa-check"></i><b>3.3</b> El binomio <code>group_by + summarise</code></a></li>
+<li class="chapter" data-level="3.4" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#creación-de-variables"><i class="fa fa-check"></i><b>3.4</b> Creación de variables</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#r-base"><i class="fa fa-check"></i><b>3.4.1</b> <code>R base</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#group_by-mutate"><i class="fa fa-check"></i><b>3.4.2</b> <code>group_by + mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#ejercicios"><i class="fa fa-check"></i><b>3.5</b> Ejercicios:</a></li>
+<li class="chapter" data-level="3.6" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#bibliografía-1"><i class="fa fa-check"></i><b>3.6</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html"><i class="fa fa-check"></i><b>4</b> Regresión lineal: Repaso.</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#recordamos-lo-que-habíamos-visto-en-clase"><i class="fa fa-check"></i><b>4.1</b> Recordamos lo que habíamos visto en clase:</a></li>
+<li class="chapter" data-level="4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#heterocedasticidad"><i class="fa fa-check"></i><b>4.2</b> Heterocedasticidad</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.2.1</b> 1) Transformación de variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#el-uso-de-errores-estándar-robustos"><i class="fa fa-check"></i><b>4.2.2</b> 2) El uso de errores estándar robustos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#factor-de-inflación-de-la-varianza-vif"><i class="fa fa-check"></i><b>4.3</b> Factor de inflación de la varianza (VIF)</a></li>
+<li class="chapter" data-level="4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#interpretacion-de-coeficientes"><i class="fa fa-check"></i><b>4.4</b> Interpretacion de coeficientes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#la-r-cuadrada"><i class="fa fa-check"></i><b>4.4.1</b> La R cuadrada</a></li>
+<li class="chapter" data-level="4.4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#los-coeficientes-de-las-variables-independientes."><i class="fa fa-check"></i><b>4.4.2</b> Los coeficientes de las variables independientes.</a></li>
+<li class="chapter" data-level="4.4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#ejercicio-interpretar-los-resultados-de-esta-regresión"><i class="fa fa-check"></i><b>4.4.3</b> Ejercicio: interpretar los resultados de esta regresión</a></li>
+<li class="chapter" data-level="4.4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#bibliografía-2"><i class="fa fa-check"></i><b>4.4.4</b> Bibliografía</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>5</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regresión-logística.html"><a href="regresión-logística.html#importar-la-base-de-datos"><i class="fa fa-check"></i><b>5.1</b> Importar la base de datos</a></li>
+<li class="chapter" data-level="5.2" data-path="regresión-logística.html"><a href="regresión-logística.html#descripción-de-la-base"><i class="fa fa-check"></i><b>5.2</b> Descripción de la base</a></li>
+<li class="chapter" data-level="5.3" data-path="regresión-logística.html"><a href="regresión-logística.html#limpieza-de-bases-de-datos"><i class="fa fa-check"></i><b>5.3</b> Limpieza de bases de datos</a></li>
+<li class="chapter" data-level="5.4" data-path="regresión-logística.html"><a href="regresión-logística.html#para-qué-sirve-este-modelo"><i class="fa fa-check"></i><b>5.4</b> ¿Para qué sirve este modelo?</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#información-adicional"><i class="fa fa-check"></i><b>5.4.1</b> Información adicional:</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos Cuantitativos para Relaciones Internacionales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exprimiendo-una-base-de-datos-obtener-datos-útiles." class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Exprimiendo una base de datos: obtener datos útiles.<a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#exprimiendo-una-base-de-datos-obtener-datos-útiles." class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En este capítulo repasaremos algunas cosas al respecto de cómo comunicarnos con R. Para ello utilizaremos la base de <code>Cruz y Urdínez (2021)</code></p>
+<div id="instalamos-y-cargamos-paquete" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Instalamos y cargamos paquete<a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#instalamos-y-cargamos-paquete" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como ya sabemos, el paquete de <code>Cruz y Urdínez (2021)</code> está directo enla página de github de los autores, por lo tanto, si no lo hemos instalado, se carga de la siguiente manera:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb98-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
+<span id="cb98-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;arcruz0/paqueteadp&quot;</span>)</span></code></pre></div>
+<div class="figure">
+<img src="images/Cap%C3%ADtulo%203/solicitud%20de%20instalar%20mas%20paquetes.JPG" alt="" />
+<p class="caption">La consola nos muestra este mensaje</p>
+</div>
+<p><em>¿Qué hacer?</em></p>
+<p>Simplemente hay que responder lo que R estaba preguntando. Cuando un paquete se instala desde la fuente del fabricante, por defecto R pregunta si debemos aprovechar para de una vez actualizar los paquetes ya existentes.
+simplemente teníamos que situarnos en el cursor de la consola y dar enter para omitir las actualizaciones.</p>
+<p>De ahí, todo es felicidad. Cargamos los paquetes e instalamos si es necesario. recordemos que normalmente podemos utilizar la función <code>install.packages</code></p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
+<span id="cb99-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(tidyverse)</span></span>
+<span id="cb99-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cargamos paquetes</span></span>
+<span id="cb99-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb99-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(paqueteadp)</span>
+<span id="cb99-6"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb99-7"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-8"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="co"># cargamos la base de datos de ejemplo</span></span>
+<span id="cb99-9"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-9" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;aprobacion&quot;</span>)</span>
+<span id="cb99-10"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb99-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()  <span class="co"># la función ls nos muestra lo que hay en nuestro ambiente de trabajo.</span></span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6     ✔ readr   2.1.2
+## ✔ tibble  3.1.8     ✔ purrr   0.3.4
+## ✔ tidyr   1.2.0     ✔ forcats 0.5.1
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<p>El propósito general de este capítulo es que nos familiaricemos con las principales órdenes para manipular datos cuando queremos extraer información útil. La base de datos que analizaremos consiste en niveles de aprobación neta trimestral para los presidentes de latinoamérica en el periodo 2000-2014 y fue utilizada para comparar el impacto de una crisis política por escandalos de corrupción en las presidentas respecto a los presidentes. La autora <code>(Reyes-Housholder, 2019)</code> publicó un artículo con sus hallazgos: Un escándalo impactaba más en las presidentas que en los presidentes.</p>
+<p>Al decir que la base de datos es trimestral, nos referimos a que cada renglón es un trimestre de un año para un presidente en particular. La fuente de datos principal es el <a href="https://www.latinobarometro.org/lat.jsp">latinbarómetro</a>, una organización din fines de lucro que genera datos de opinión sobre la aprobación presidencial de los países de latinoamérica.</p>
+</div>
+<div id="el-pipe-operator" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> El <code>pipe</code> operator <code>%&gt;%</code><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-pipe-operator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como primer ejemplo, vamos a calcular el promedio de la aprobación neta si el presidente era hombre o mujer. Primero repasamos cómo calcular un promedio, y luego podemos filtrar el promedio de los datos que corresponden a presidentes hombres y presidentes mujeres:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># el comando mean sirve para calcular promedios:</span></span>
+<span id="cb101-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(aprobacion<span class="sc">$</span>aprobacion_neta)</span>
+<span id="cb101-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 15.28124 # el promedio de la aprobación de todos los presidentes</span></span>
+<span id="cb101-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ahora la aprobación para las presidentas:</span></span>
+<span id="cb101-6"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(aprobacion[aprobacion<span class="sc">$</span>presidente_genero<span class="sc">==</span><span class="st">&quot;Femenino&quot;</span>,]<span class="sc">$</span>aprobacion_neta)</span>
+<span id="cb101-7"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 8.931643</span></span>
+<span id="cb101-8"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Y para los presidentes:</span></span>
+<span id="cb101-9"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(aprobacion[aprobacion<span class="sc">$</span>presidente_genero<span class="sc">==</span><span class="st">&quot;Masculino&quot;</span>,]<span class="sc">$</span>aprobacion_neta)</span>
+<span id="cb101-10"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb101-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 15.95615</span></span></code></pre></div>
+<p>Vemos que el promedio de aprobación para los presidentes y las presidentas ya es revelador: es mayor para los varones que para las mujeres.</p>
+<p>En este caso, solamente tenemos que correr una función para cada género, aunque para calcular la media para una variable que se divida en 7 categorías, entonces tendríamos que hacer 7 líneas de código. Por eso lo vamos a hacer de una forma alternativa, utilizando la combinación de funciones <code>group_by + summarise</code>:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb102-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Primero obtenemos la media:</span></span>
+<span id="cb102-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-4" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">promedio=</span><span class="fu">mean</span>(aprobacion_neta))</span>
+<span id="cb102-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="co"># # A tibble: 1 x 1</span></span>
+<span id="cb102-6"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-6" aria-hidden="true" tabindex="-1"></a><span class="co"># #   promedio</span></span>
+<span id="cb102-7"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-7" aria-hidden="true" tabindex="-1"></a><span class="co"># #      &lt;dbl&gt;</span></span>
+<span id="cb102-8"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # 1     15.3</span></span>
+<span id="cb102-9"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-10"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Si queremos por genero usamos también group_by</span></span>
+<span id="cb102-11"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-11" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="sc">%&gt;%</span></span>
+<span id="cb102-12"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(presidente_genero) <span class="sc">%&gt;%</span> </span>
+<span id="cb102-13"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio=</span><span class="fu">mean</span>(aprobacion_neta))</span>
+<span id="cb102-14"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-14" aria-hidden="true" tabindex="-1"></a><span class="co"># # # A tibble: 2 x 2</span></span>
+<span id="cb102-15"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-15" aria-hidden="true" tabindex="-1"></a><span class="co"># #   presidente_genero promedio</span></span>
+<span id="cb102-16"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-16" aria-hidden="true" tabindex="-1"></a><span class="co"># #   &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span id="cb102-17"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-17" aria-hidden="true" tabindex="-1"></a><span class="co"># # 1 Femenino              8.93</span></span>
+<span id="cb102-18"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb102-18" aria-hidden="true" tabindex="-1"></a><span class="co"># # 2 Masculino            16.0</span></span></code></pre></div>
+<p>Inmediatamente vemos algunas cosas que no son tan fáciles de reconocer, como el símbolo %&gt;%. Este se llama operador <em>pipe</em> y facilita la lectura del código y manipulación de datos.</p>
+</div>
+<div id="el-binomio-group_by-summarise" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> El binomio <code>group_by + summarise</code><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-binomio-group_by-summarise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para verificar la utilidad de la combinación <code>group_by + summarise</code>, probamos una categoría mas amplia, calcularemos la aprobación promedio para cada presidente. Primero lo haremos con la sintaxis tradicional de <code>R base</code>. De la misma manera que lo hicimos para las y los presidentes, tendríamos que calcular la media de aprobación para cada presidente:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(aprobacion<span class="sc">$</span>presidente) <span class="do">## para ver como estan escritos los presidentes y ver su base de datos</span></span>
+<span id="cb103-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Fernando de la Rúa&quot;</span></span>
+<span id="cb103-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] &quot;Eduardo Alberto Duhalde&quot;</span></span>
+<span id="cb103-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] &quot;Néstor Carlos Kirchner&quot;</span></span>
+<span id="cb103-6"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] &quot;Cristina Fernández de Kirchner&quot;</span></span>
+<span id="cb103-7"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [5] &quot;Hugo Banzer .... y 65 presidentes más!</span></span>
+<span id="cb103-8"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-9"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(aprobacion[aprobacion<span class="sc">$</span>presidente<span class="sc">==</span><span class="st">&quot;Fernando de la Rúa&quot;</span>,]<span class="sc">$</span>aprobacion_neta)</span>
+<span id="cb103-10"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -0.9238752</span></span>
+<span id="cb103-11"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb103-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Y tendríamos que hacer esto 69 veces más!!</span></span></code></pre></div>
+<p>Por suerte, tenemos una alternativa: la combinación <code>group_by + summarise</code>. Con estos comandos del paquete <code>dplyr</code> tenemos esas órdenes con mucho menos líneas. En esta forma, se escribe menos (algo que se agradece cuando se tienen que programar codigos enormes) y podemos sacar muchos cálculos, no solo la media. Para obtener los datos de la aprobación promedio de los presidentes, el código sería el siguiente:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb104-1" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="sc">%&gt;%</span> </span>
+<span id="cb104-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(presidente) <span class="sc">%&gt;%</span> </span>
+<span id="cb104-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(aprobacion_neta))</span></code></pre></div>
+<pre><code>## # A tibble: 70 × 2
+##    presidente       `mean(aprobacion_neta)`
+##    &lt;chr&gt;                              &lt;dbl&gt;
+##  1 Abel Pacheco                       16.5 
+##  2 Alan García                       -19.3 
+##  3 Alberto Fujimori                  -27.3 
+##  4 Alejandro Toledo                  -47.6 
+##  5 Alfonso Portillo                  -20.2 
+##  6 Alfredo Palacio                    14.8 
+##  7 Álvaro Colom                       15.1 
+##  8 Álvaro Uribe                       46.1 
+##  9 Andrés Pastrana                   -23.4 
+## 10 Arnoldo Alemán                      1.29
+## # … with 60 more rows
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
+<p>Esto tiene la ventaja además de que nos puede crear una tabla con el promedio de aprobación por presidente, su género y país donde gobiernan, en este punto incluso podemos guardar esta tabla para usarla después:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb106-1" aria-hidden="true" tabindex="-1"></a>aprobacion_media_presidente <span class="ot">&lt;-</span> aprobacion <span class="sc">%&gt;%</span> </span>
+<span id="cb106-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais, presidente, presidente_genero) <span class="sc">%&gt;%</span> </span>
+<span id="cb106-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(aprobacion_neta))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;pais&#39;, &#39;presidente&#39;. You can override
+## using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb108-1" aria-hidden="true" tabindex="-1"></a>aprobacion_media_presidente</span></code></pre></div>
+<pre><code>## # A tibble: 70 × 4
+## # Groups:   pais, presidente [70]
+##    pais      presidente                     presidente_genero mean(aprobacion_…¹
+##    &lt;chr&gt;     &lt;chr&gt;                          &lt;chr&gt;                          &lt;dbl&gt;
+##  1 Argentina Cristina Fernández de Kirchner Femenino                       8.98 
+##  2 Argentina Eduardo Alberto Duhalde        Masculino                     -6.69 
+##  3 Argentina Fernando de la Rúa             Masculino                     -0.924
+##  4 Argentina Néstor Carlos Kirchner         Masculino                     44.3  
+##  5 Bolivia   Carlos Mesa                    Masculino                      4.43 
+##  6 Bolivia   Eduardo Rodríguez Veltzé       Masculino                     27.5  
+##  7 Bolivia   Evo Morales                    Masculino                     22.3  
+##  8 Bolivia   Gonzalo Sánchez de Lozada      Masculino                    -10.2  
+##  9 Bolivia   Hugo Banzer                    Masculino                    -17.2  
+## 10 Bolivia   Jorge Quiroga Ramírez          Masculino                    -14.2  
+## # … with 60 more rows, and abbreviated variable name ¹​`mean(aprobacion_neta)`
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
+<p>Nótese que en los nombres de las variables, la aprobación promedio aparece con el nombre de la función que usamos sobre la variable aprobacion_neta con <em>mean(aprobacion_neta)</em>. Esto se logra poniendole el nombre que consideremos más conveniente dentro del comando summarise de esta manera:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb110-1" aria-hidden="true" tabindex="-1"></a>aprobacion_media_presidente <span class="ot">&lt;-</span> aprobacion <span class="sc">%&gt;%</span> </span>
+<span id="cb110-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais, presidente, presidente_genero) <span class="sc">%&gt;%</span> </span>
+<span id="cb110-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">aprobacion_media=</span><span class="fu">mean</span>(aprobacion_neta))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;pais&#39;, &#39;presidente&#39;. You can override
+## using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb112-1" aria-hidden="true" tabindex="-1"></a>aprobacion_media_presidente</span></code></pre></div>
+<pre><code>## # A tibble: 70 × 4
+## # Groups:   pais, presidente [70]
+##    pais      presidente                     presidente_genero aprobacion_media
+##    &lt;chr&gt;     &lt;chr&gt;                          &lt;chr&gt;                        &lt;dbl&gt;
+##  1 Argentina Cristina Fernández de Kirchner Femenino                     8.98 
+##  2 Argentina Eduardo Alberto Duhalde        Masculino                   -6.69 
+##  3 Argentina Fernando de la Rúa             Masculino                   -0.924
+##  4 Argentina Néstor Carlos Kirchner         Masculino                   44.3  
+##  5 Bolivia   Carlos Mesa                    Masculino                    4.43 
+##  6 Bolivia   Eduardo Rodríguez Veltzé       Masculino                   27.5  
+##  7 Bolivia   Evo Morales                    Masculino                   22.3  
+##  8 Bolivia   Gonzalo Sánchez de Lozada      Masculino                  -10.2  
+##  9 Bolivia   Hugo Banzer                    Masculino                  -17.2  
+## 10 Bolivia   Jorge Quiroga Ramírez          Masculino                  -14.2  
+## # … with 60 more rows
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
+<p>Pero además, tenemos la opción de obtener una tabla resumen de más de una variable. En este caso, podemos recuperar también el año de inicio y de término de su gestión, así como variables como corrupción, desempleo, entre otras. El límite es la información de la base de datos. Aprovecharemos para primero renombrar unas variables mal codificadas. Cuando analicemos datos directamente de sus fuentes, será muy comun tener que corregir algunos errores y en generar limpiar la base de datos antes de poder utilizarla:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb114-1" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="sc">%&gt;%</span> </span>
+<span id="cb114-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais, presidente, presidente_genero) <span class="sc">%&gt;%</span> </span>
+<span id="cb114-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb114-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">desempleo_promedio=</span><span class="fu">mean</span>(desempleo),</span>
+<span id="cb114-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb114-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">corrupcion_promedio=</span><span class="fu">mean</span>(corrupcion),</span>
+<span id="cb114-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb114-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">aprobacion_promedio=</span><span class="fu">mean</span>(aprobacion_neta),</span>
+<span id="cb114-6"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb114-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">anio_inicio=</span><span class="fu">min</span>(anio),</span>
+<span id="cb114-7"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb114-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">anio_termino=</span><span class="fu">max</span>(anio)</span>
+<span id="cb114-8"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb114-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;pais&#39;, &#39;presidente&#39;. You can override
+## using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 70 × 8
+## # Groups:   pais, presidente [70]
+##    pais      presidente          presi…¹ desem…² corru…³ aprob…⁴ anio_…⁵ anio_…⁶
+##    &lt;chr&gt;     &lt;chr&gt;               &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Argentina Cristina Fernández… Femeni…    7.56    51.7   8.98     2008    2014
+##  2 Argentina Eduardo Alberto Du… Mascul…   18.2     33.4  -6.69     2002    2003
+##  3 Argentina Fernando de la Rúa  Mascul…   16.6     14.0  -0.924    2000    2001
+##  4 Argentina Néstor Carlos Kirc… Mascul…   11.4     50.1  44.3      2003    2007
+##  5 Bolivia   Carlos Mesa         Mascul…    4.60    52.0   4.43     2003    2005
+##  6 Bolivia   Eduardo Rodríguez … Mascul…    5.08    38.1  27.5      2005    2005
+##  7 Bolivia   Evo Morales         Mascul…    2.89    39.3  22.3      2006    2014
+##  8 Bolivia   Gonzalo Sánchez de… Mascul…    5.07    60.5 -10.2      2002    2003
+##  9 Bolivia   Hugo Banzer         Mascul…    4.78    60.5 -17.2      2000    2001
+## 10 Bolivia   Jorge Quiroga Ramí… Mascul…    5.40    60.5 -14.2      2001    2002
+## # … with 60 more rows, and abbreviated variable names ¹​presidente_genero,
+## #   ²​desempleo_promedio, ³​corrupcion_promedio, ⁴​aprobacion_promedio,
+## #   ⁵​anio_inicio, ⁶​anio_termino
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
+<p>Ya tenemos un resultado muy útil como resumen, pero para hacerlo más legible convendría que estuviera ordenado de una manera distinta. Lo vamos a ordenar de mayor a menor aprobación:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-1" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="sc">%&gt;%</span> </span>
+<span id="cb117-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pais, presidente, presidente_genero) <span class="sc">%&gt;%</span> </span>
+<span id="cb117-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">desempleo_promedio=</span><span class="fu">mean</span>(desempleo),</span>
+<span id="cb117-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">corrupcion_promedio=</span><span class="fu">mean</span>(corrupcion),</span>
+<span id="cb117-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">aprobacion_promedio=</span><span class="fu">mean</span>(aprobacion_neta),</span>
+<span id="cb117-6"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">anio_inicio=</span><span class="fu">min</span>(anio),</span>
+<span id="cb117-7"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">anio_termino=</span><span class="fu">max</span>(anio)</span>
+<span id="cb117-8"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> ungroup <span class="sc">%&gt;%</span> </span>
+<span id="cb117-9"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb117-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(aprobacion_promedio)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;pais&#39;, &#39;presidente&#39;. You can override
+## using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 70 × 8
+##    pais      presidente          presi…¹ desem…² corru…³ aprob…⁴ anio_…⁵ anio_…⁶
+##    &lt;chr&gt;     &lt;chr&gt;               &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Perú      Alejandro Toledo    Mascul…    5.10   36.6    -47.6    2001    2006
+##  2 Perú      Alberto Fujimori    Mascul…    5.76   12.0    -27.3    2000    2000
+##  3 Colombia  Andrés Pastrana     Mascul…   17.4    40.0    -23.4    2000    2002
+##  4 Guatemala Alfonso Portillo    Mascul…    2.31   74.7    -20.2    2000    2003
+##  5 Paraguay  Luis Ángel González Mascul…    8.00   77.5    -19.5    2000    2003
+##  6 Perú      Alan García         Mascul…    3.90   38.5    -19.3    2006    2011
+##  7 Venezuela Nicolás Maduro      Mascul…    7.20   94.4    -18.8    2013    2014
+##  8 Bolivia   Hugo Banzer         Mascul…    4.78   60.5    -17.2    2000    2001
+##  9 Chile     Sebastián Piñera E… Mascul…    7.00    4.05   -15.7    2010    2014
+## 10 Venezuela Hugo Chávez         Mascul…   10.7    87.3    -14.3    2000    2013
+## # … with 60 more rows, and abbreviated variable names ¹​presidente_genero,
+## #   ²​desempleo_promedio, ³​corrupcion_promedio, ⁴​aprobacion_promedio,
+## #   ⁵​anio_inicio, ⁶​anio_termino
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
+<p>Ahora intentemos la aprobación para los presidentes de México:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb120-1" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="sc">%&gt;%</span> <span class="fu">filter</span>(pais<span class="sc">==</span><span class="st">&quot;México&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb120-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(presidente) <span class="sc">%&gt;%</span> </span>
+<span id="cb120-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio=</span><span class="fu">mean</span>(aprobacion_neta))</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 2
+##   presidente         promedio
+##   &lt;chr&gt;                 &lt;dbl&gt;
+## 1 Enrique Peña Nieto     15.7
+## 2 Ernesto Zedillo        40.5
+## 3 Felipe Calderón        30.7
+## 4 Vicente Fox            29.6</code></pre>
+</div>
+<div id="creación-de-variables" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Creación de variables<a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#creación-de-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="r-base" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> <code>R base</code><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#r-base" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En algunos casos, antes de calcular resumenes como los que obtuvimos por medio de <code>group_by + summarise</code> necesitamos crear variables en la misma unidad de análisis de la base de datos, en este caso, trimestre-año-país-presidente. Presentamos primero la forma de hacerlo en <em>r base</em>, con el cálculo del PIB per cápita y el logaritmo natural del PIB:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logaritmo natural del PIB</span></span>
+<span id="cb122-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb122-2" aria-hidden="true" tabindex="-1"></a>aprobacion<span class="sc">$</span>log_pib <span class="ot">&lt;-</span> <span class="fu">log</span>(aprobacion<span class="sc">$</span>pib)</span>
+<span id="cb122-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aprobacion<span class="sc">$</span>log_pib)</span></code></pre></div>
+<pre><code>## [1] 27.03709 27.03709 27.03709 27.03709 26.99200 26.99200</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PIB per cápita</span></span>
+<span id="cb124-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cuando creamos una variable, debemos &#39;bautizarla&#39; del lado izquierdo de la flechita podemos elegir el nombre que más nos convenga, pero del lado derecho si necesitamos llamar las variables que ya estan dentro de la base de datos.</span></span>
+<span id="cb124-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb124-3" aria-hidden="true" tabindex="-1"></a>aprobacion<span class="sc">$</span>pib_per_capita <span class="ot">&lt;-</span> aprobacion<span class="sc">$</span>poblacion<span class="sc">/</span>aprobacion<span class="sc">$</span>pib</span>
+<span id="cb124-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aprobacion<span class="sc">$</span>pib_per_capita)</span></code></pre></div>
+<pre><code>## [1] 6.711468e-05 6.711468e-05 6.711468e-05 6.711468e-05 7.099462e-05
+## [6] 7.099462e-05</code></pre>
+<p>Como puede verse, tiene que llamarse la base de datos junto con su respectiva variable cada que queremos llamar un componente, aunque sea la misma base de datos. Estas operaciones se pueden simplificar utilizando <code>mutate</code>:</p>
+<p>### <code>mutate</code></p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb126-1" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="ot">&lt;-</span> aprobacion <span class="sc">%&gt;%</span> </span>
+<span id="cb126-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_pib=</span><span class="fu">log</span>(pib),</span>
+<span id="cb126-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb126-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">pib_per_capita =</span> pib <span class="sc">/</span> poblacion )</span>
+<span id="cb126-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb126-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb126-5" aria-hidden="true" tabindex="-1"></a>aprobacion</span></code></pre></div>
+<pre><code>## # A tibble: 1,020 × 13
+##    pais     anio trime…¹ presi…² presi…³ aprob…⁴ corru…⁵     pib pobla…⁶ desem…⁷
+##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Argent…  2000       1 Fernan… Mascul…   40.1     14.0 5.52e11  3.71e7    15  
+##  2 Argent…  2000       2 Fernan… Mascul…   16.4     14.0 5.52e11  3.71e7    15  
+##  3 Argent…  2000       3 Fernan… Mascul…   24.0     14.0 5.52e11  3.71e7    15  
+##  4 Argent…  2000       4 Fernan… Mascul…  -18.3     14.0 5.52e11  3.71e7    15  
+##  5 Argent…  2001       1 Fernan… Mascul…   -6.97    14.0 5.28e11  3.75e7    18.3
+##  6 Argent…  2001       2 Fernan… Mascul…  -20.1     14.0 5.28e11  3.75e7    18.3
+##  7 Argent…  2001       3 Fernan… Mascul…  -19.4     14.0 5.28e11  3.75e7    18.3
+##  8 Argent…  2001       4 Fernan… Mascul…  -23.2     14.0 5.28e11  3.75e7    18.3
+##  9 Argent…  2002       1 Eduard… Mascul…   -2.01    25.0 4.70e11  3.79e7    17.9
+## 10 Argent…  2002       2 Eduard… Mascul…  -20.1     25.0 4.70e11  3.79e7    17.9
+## # … with 1,010 more rows, 3 more variables: crecimiento_pib &lt;dbl&gt;,
+## #   log_pib &lt;dbl&gt;, pib_per_capita &lt;dbl&gt;, and abbreviated variable names
+## #   ¹​trimestre, ²​presidente, ³​presidente_genero, ⁴​aprobacion_neta, ⁵​corrupcion,
+## #   ⁶​poblacion, ⁷​desempleo
+## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+<div id="group_by-mutate" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> <code>group_by + mutate</code><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#group_by-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A veces necesitamos calcular una variable agrupada pero en vez de presentarla en una tabla como resumen, que nos aparezca en cada renglón. Pensemos que queremos calcular la diferencia entre la aprobación media de un presidente y su aprobacion en cada trimestre, lo cual nos daría una idea más clara de la fluctuacion de su aprobación en relación con su periodo completo. Entonces tendríamos que hacer:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculamos la aprobacion por presidente</span></span>
+<span id="cb128-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-2" aria-hidden="true" tabindex="-1"></a>aprobacion_presidente <span class="ot">&lt;-</span> aprobacion <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(presidente) <span class="sc">%&gt;%</span> </span>
+<span id="cb128-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">aprobacion_media=</span><span class="fu">mean</span>(aprobacion_neta))</span>
+<span id="cb128-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="co"># unimos este resultado a nuestra base de datos aprobacion con el comando left join</span></span>
+<span id="cb128-6"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-6" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="ot">&lt;-</span> <span class="fu">left_join</span>(aprobacion, aprobacion_presidente, <span class="at">by=</span><span class="st">&quot;presidente&quot;</span>)</span>
+<span id="cb128-7"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-8"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculamos la diferencia respecto a la media </span></span>
+<span id="cb128-9"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb128-9" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">diferencia_aprobacion=</span>aprobacion_media<span class="sc">-</span>aprobacion_neta)</span></code></pre></div>
+<pre><code>## # A tibble: 1,020 × 15
+##    pais     anio trime…¹ presi…² presi…³ aprob…⁴ corru…⁵     pib pobla…⁶ desem…⁷
+##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Argent…  2000       1 Fernan… Mascul…   40.1     14.0 5.52e11  3.71e7    15  
+##  2 Argent…  2000       2 Fernan… Mascul…   16.4     14.0 5.52e11  3.71e7    15  
+##  3 Argent…  2000       3 Fernan… Mascul…   24.0     14.0 5.52e11  3.71e7    15  
+##  4 Argent…  2000       4 Fernan… Mascul…  -18.3     14.0 5.52e11  3.71e7    15  
+##  5 Argent…  2001       1 Fernan… Mascul…   -6.97    14.0 5.28e11  3.75e7    18.3
+##  6 Argent…  2001       2 Fernan… Mascul…  -20.1     14.0 5.28e11  3.75e7    18.3
+##  7 Argent…  2001       3 Fernan… Mascul…  -19.4     14.0 5.28e11  3.75e7    18.3
+##  8 Argent…  2001       4 Fernan… Mascul…  -23.2     14.0 5.28e11  3.75e7    18.3
+##  9 Argent…  2002       1 Eduard… Mascul…   -2.01    25.0 4.70e11  3.79e7    17.9
+## 10 Argent…  2002       2 Eduard… Mascul…  -20.1     25.0 4.70e11  3.79e7    17.9
+## # … with 1,010 more rows, 5 more variables: crecimiento_pib &lt;dbl&gt;,
+## #   log_pib &lt;dbl&gt;, pib_per_capita &lt;dbl&gt;, aprobacion_media &lt;dbl&gt;,
+## #   diferencia_aprobacion &lt;dbl&gt;, and abbreviated variable names ¹​trimestre,
+## #   ²​presidente, ³​presidente_genero, ⁴​aprobacion_neta, ⁵​corrupcion, ⁶​poblacion,
+## #   ⁷​desempleo
+## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+<p>Todas estas operaciones pueden hacerse con la dupla de comandos <code>group_by + mutate</code> de una manera más rapida y sencilla:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb130-1" aria-hidden="true" tabindex="-1"></a>aprobacion <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(presidente) <span class="sc">%&gt;%</span> </span>
+<span id="cb130-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">aprobacion_media=</span><span class="fu">mean</span>(aprobacion_neta), </span>
+<span id="cb130-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb130-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">diferencia=</span>aprobacion_media<span class="sc">-</span>aprobacion_neta)</span></code></pre></div>
+<pre><code>## # A tibble: 1,020 × 15
+## # Groups:   presidente [70]
+##    pais     anio trime…¹ presi…² presi…³ aprob…⁴ corru…⁵     pib pobla…⁶ desem…⁷
+##    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Argent…  2000       1 Fernan… Mascul…   40.1     14.0 5.52e11  3.71e7    15  
+##  2 Argent…  2000       2 Fernan… Mascul…   16.4     14.0 5.52e11  3.71e7    15  
+##  3 Argent…  2000       3 Fernan… Mascul…   24.0     14.0 5.52e11  3.71e7    15  
+##  4 Argent…  2000       4 Fernan… Mascul…  -18.3     14.0 5.52e11  3.71e7    15  
+##  5 Argent…  2001       1 Fernan… Mascul…   -6.97    14.0 5.28e11  3.75e7    18.3
+##  6 Argent…  2001       2 Fernan… Mascul…  -20.1     14.0 5.28e11  3.75e7    18.3
+##  7 Argent…  2001       3 Fernan… Mascul…  -19.4     14.0 5.28e11  3.75e7    18.3
+##  8 Argent…  2001       4 Fernan… Mascul…  -23.2     14.0 5.28e11  3.75e7    18.3
+##  9 Argent…  2002       1 Eduard… Mascul…   -2.01    25.0 4.70e11  3.79e7    17.9
+## 10 Argent…  2002       2 Eduard… Mascul…  -20.1     25.0 4.70e11  3.79e7    17.9
+## # … with 1,010 more rows, 5 more variables: crecimiento_pib &lt;dbl&gt;,
+## #   log_pib &lt;dbl&gt;, pib_per_capita &lt;dbl&gt;, aprobacion_media &lt;dbl&gt;,
+## #   diferencia &lt;dbl&gt;, and abbreviated variable names ¹​trimestre, ²​presidente,
+## #   ³​presidente_genero, ⁴​aprobacion_neta, ⁵​corrupcion, ⁶​poblacion, ⁷​desempleo
+## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<div id="ejercicios" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Ejercicios:<a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#ejercicios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copia y pega el script en tu editor de códigos de Rstudio</span></span>
+<span id="cb132-2"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb132-3"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(paqueteadp)</span>
+<span id="cb132-4"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-5"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="do">### 1. Carga la base aprobación</span></span>
+<span id="cb132-6"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-7"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-8"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-8" aria-hidden="true" tabindex="-1"></a><span class="do">### 2. Crea  una variable dicotómica que indique el primer trimestre de la toma de posesión de cada presidente.</span></span>
+<span id="cb132-9"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-10"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-11"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Considera la función rank, con el siguiente ejemplo:</span></span>
+<span id="cb132-12"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb132-13"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-13" aria-hidden="true" tabindex="-1"></a>vector <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">50</span>, <span class="dv">15</span>) <span class="sc">%&gt;%</span> round <span class="co"># esto crea una muestra de 15 números aleatorios entre el 10 y el 50, y los redondea.</span></span>
+<span id="cb132-14"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-14" aria-hidden="true" tabindex="-1"></a>vector <span class="co"># esta es nuestra lista de 15 números</span></span>
+<span id="cb132-15"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rank</span>(vector) <span class="co"># nos devuelve la posición del número, de menor a mayor. el 12 es el más pequeño, por lo cual tiene la posición uno, el que sigue es el 14 (posición 2...) </span></span>
+<span id="cb132-16"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-16" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1] 10  4  3  1 14 15  6  7  8 11  2  5 12 13  9</span></span>
+<span id="cb132-17"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rank</span>(<span class="sc">-</span>vector) <span class="do">## En este caso, el uno es para el número más grande. </span></span>
+<span id="cb132-18"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-18" aria-hidden="true" tabindex="-1"></a> <span class="do">## [1]  6 12 13 15  2  1 10  9  8  5 14 11  4  3  7</span></span>
+<span id="cb132-19"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-20"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-20" aria-hidden="true" tabindex="-1"></a><span class="do">### 3. Teniendo en cuenta esto, crea una variable con la posición del trimestre de mayor a menor aprobación neta para cada presidente utilizando group_by + mutate</span></span>
+<span id="cb132-21"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-22"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-23"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-23" aria-hidden="true" tabindex="-1"></a><span class="do">### 4. ¿Para cuántos presidentes el trimestre inmediato a su toma de posesión fue el de mayor aprobación?</span></span>
+<span id="cb132-24"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-25"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-26"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-26" aria-hidden="true" tabindex="-1"></a><span class="do">### 5. compare la aprobación durante el primer trimestre después de la toma de posesión para cada presidente y presidenta con la media de aprobación durante todo su periodo ¿Era menor o mayor? Dirías que hay un efecto de &#39;luna de miel&#39;?</span></span>
+<span id="cb132-27"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-27" aria-hidden="true" tabindex="-1"></a><span class="co"># pista: no necesariamente es el trimestre 1, porque algunos presidentes pueden tomar posesión a mitad del año o en otro periodo</span></span>
+<span id="cb132-28"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-29"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-30"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#cb132-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. La diferencia entre la aprobación el primer trimestre de posesión y el promedio de cada presidente ¿Era menor o mayor en el caso de las mujeres?</span></span></code></pre></div>
+</div>
+<div id="bibliografía-1" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Bibliografía<a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#bibliografía-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Urdinez, F. and Cruz, A. (Eds.) (2021). AnalizaR Datos Políticos</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introducción-al-manejo-de-datos-en-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regresión-lineal-repaso..html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Regresión lineal: Repaso. | Métodos Cuantitativos para Relaciones Internacionales</title>
+  <meta name="description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Regresión lineal: Repaso. | Métodos Cuantitativos para Relaciones Internacionales" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Regresión lineal: Repaso. | Métodos Cuantitativos para Relaciones Internacionales" />
+  
+  <meta name="twitter:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+<meta name="author" content="Armando González Díaz. armando.gonzalezdi@anahuac.mx  www.twitter.com/Ar_GonTr" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="Anahuac.ico" type="image/x-icon" />
+<link rel="prev" href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"/>
+<link rel="next" href="regresión-logística.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Instalación y primeros pasos con R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#windows"><i class="fa fa-check"></i><b>1.1</b> Windows</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#descargar-e-instalar-r"><i class="fa fa-check"></i><b>1.1.1</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#instalar-rtools"><i class="fa fa-check"></i><b>1.1.2</b> Instalar <code>Rtools</code></a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Instalación de <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#instalación-en-mac"><i class="fa fa-check"></i><b>1.2</b> Instalación en Mac</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#instalación-de-xquartz"><i class="fa fa-check"></i><b>1.2.1</b> Instalación de <code>Xquartz</code></a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#descargar-e-instalar-r-1"><i class="fa fa-check"></i><b>1.2.2</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Instalar <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#lo-logramos"><i class="fa fa-check"></i><b>1.3</b> ¡Lo logramos!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html"><i class="fa fa-check"></i><b>2</b> Introducción al manejo de datos en R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#paquetes-necesarios"><i class="fa fa-check"></i><b>2.1</b> Paquetes necesarios</a></li>
+<li class="chapter" data-level="2.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#repaso-operaciones-básicas-y-primera-interacción-con-r"><i class="fa fa-check"></i><b>2.2</b> Repaso: Operaciones básicas y primera interacción con R</a></li>
+<li class="chapter" data-level="2.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#instalación-y-carga-de-paquetes."><i class="fa fa-check"></i><b>2.3</b> Instalación y carga de paquetes.</a></li>
+<li class="chapter" data-level="2.4" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#principales-tipos-de-objetos-valores-vectores-matrices-y-data.frame"><i class="fa fa-check"></i><b>2.4</b> Principales tipos de objetos: valores, vectores, matrices y <code>data.frame</code></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#vectores"><i class="fa fa-check"></i><b>2.4.1</b> vectores</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#matrices"><i class="fa fa-check"></i><b>2.4.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#el-dataframe"><i class="fa fa-check"></i><b>2.4.3</b> El <code>dataframe</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#selección-de-objetos-dentro-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.5</b> Selección de objetos dentro de una base de datos</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#teoría-de-conjuntos-álgebra-y-los-lenguajes-de-programación"><i class="fa fa-check"></i><b>2.5.1</b> Teoría de conjuntos, álgebra y los lenguajes de programación</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#algunas-operaciones-básicas-que-pueden-hacerse-con-r"><i class="fa fa-check"></i><b>2.6</b> Algunas operaciones básicas que pueden hacerse con <code>R</code></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#importando-datos-con-r"><i class="fa fa-check"></i><b>2.6.1</b> Importando datos con R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.7</b> Operaciones básicas</a></li>
+<li class="chapter" data-level="2.8" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#ejercicio"><i class="fa fa-check"></i><b>2.8</b> Ejercicio:</a></li>
+<li class="chapter" data-level="2.9" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#bibliografía"><i class="fa fa-check"></i><b>2.9</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><i class="fa fa-check"></i><b>3</b> Exprimiendo una base de datos: obtener datos útiles.</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#instalamos-y-cargamos-paquete"><i class="fa fa-check"></i><b>3.1</b> Instalamos y cargamos paquete</a></li>
+<li class="chapter" data-level="3.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-pipe-operator"><i class="fa fa-check"></i><b>3.2</b> El <code>pipe</code> operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-binomio-group_by-summarise"><i class="fa fa-check"></i><b>3.3</b> El binomio <code>group_by + summarise</code></a></li>
+<li class="chapter" data-level="3.4" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#creación-de-variables"><i class="fa fa-check"></i><b>3.4</b> Creación de variables</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#r-base"><i class="fa fa-check"></i><b>3.4.1</b> <code>R base</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#group_by-mutate"><i class="fa fa-check"></i><b>3.4.2</b> <code>group_by + mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#ejercicios"><i class="fa fa-check"></i><b>3.5</b> Ejercicios:</a></li>
+<li class="chapter" data-level="3.6" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#bibliografía-1"><i class="fa fa-check"></i><b>3.6</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html"><i class="fa fa-check"></i><b>4</b> Regresión lineal: Repaso.</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#recordamos-lo-que-habíamos-visto-en-clase"><i class="fa fa-check"></i><b>4.1</b> Recordamos lo que habíamos visto en clase:</a></li>
+<li class="chapter" data-level="4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#heterocedasticidad"><i class="fa fa-check"></i><b>4.2</b> Heterocedasticidad</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.2.1</b> 1) Transformación de variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#el-uso-de-errores-estándar-robustos"><i class="fa fa-check"></i><b>4.2.2</b> 2) El uso de errores estándar robustos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#factor-de-inflación-de-la-varianza-vif"><i class="fa fa-check"></i><b>4.3</b> Factor de inflación de la varianza (VIF)</a></li>
+<li class="chapter" data-level="4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#interpretacion-de-coeficientes"><i class="fa fa-check"></i><b>4.4</b> Interpretacion de coeficientes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#la-r-cuadrada"><i class="fa fa-check"></i><b>4.4.1</b> La R cuadrada</a></li>
+<li class="chapter" data-level="4.4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#los-coeficientes-de-las-variables-independientes."><i class="fa fa-check"></i><b>4.4.2</b> Los coeficientes de las variables independientes.</a></li>
+<li class="chapter" data-level="4.4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#ejercicio-interpretar-los-resultados-de-esta-regresión"><i class="fa fa-check"></i><b>4.4.3</b> Ejercicio: interpretar los resultados de esta regresión</a></li>
+<li class="chapter" data-level="4.4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#bibliografía-2"><i class="fa fa-check"></i><b>4.4.4</b> Bibliografía</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>5</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regresión-logística.html"><a href="regresión-logística.html#importar-la-base-de-datos"><i class="fa fa-check"></i><b>5.1</b> Importar la base de datos</a></li>
+<li class="chapter" data-level="5.2" data-path="regresión-logística.html"><a href="regresión-logística.html#descripción-de-la-base"><i class="fa fa-check"></i><b>5.2</b> Descripción de la base</a></li>
+<li class="chapter" data-level="5.3" data-path="regresión-logística.html"><a href="regresión-logística.html#limpieza-de-bases-de-datos"><i class="fa fa-check"></i><b>5.3</b> Limpieza de bases de datos</a></li>
+<li class="chapter" data-level="5.4" data-path="regresión-logística.html"><a href="regresión-logística.html#para-qué-sirve-este-modelo"><i class="fa fa-check"></i><b>5.4</b> ¿Para qué sirve este modelo?</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#información-adicional"><i class="fa fa-check"></i><b>5.4.1</b> Información adicional:</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos Cuantitativos para Relaciones Internacionales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regresión-lineal-repaso." class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Regresión lineal: Repaso.<a href="regresión-lineal-repaso..html#regresión-lineal-repaso." class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="regresión-lineal-repaso..html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(texreg)</span>
+<span id="cb133-2"><a href="regresión-lineal-repaso..html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(robustbase)</span>
+<span id="cb133-3"><a href="regresión-lineal-repaso..html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb133-4"><a href="regresión-lineal-repaso..html#cb133-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb133-5"><a href="regresión-lineal-repaso..html#cb133-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb133-6"><a href="regresión-lineal-repaso..html#cb133-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelr)</span>
+<span id="cb133-7"><a href="regresión-lineal-repaso..html#cb133-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb133-8"><a href="regresión-lineal-repaso..html#cb133-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<div id="recordamos-lo-que-habíamos-visto-en-clase" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Recordamos lo que habíamos visto en clase:<a href="regresión-lineal-repaso..html#recordamos-lo-que-habíamos-visto-en-clase" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="regresión-lineal-repaso..html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;bienestar&quot;</span>)</span>
+<span id="cb134-2"><a href="regresión-lineal-repaso..html#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-3"><a href="regresión-lineal-repaso..html#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="regresión-lineal-repaso..html#cb134-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-5"><a href="regresión-lineal-repaso..html#cb134-5" aria-hidden="true" tabindex="-1"></a>bienestar_no_na <span class="ot">&lt;-</span> bienestar <span class="sc">%&gt;%</span> </span>
+<span id="cb134-6"><a href="regresión-lineal-repaso..html#cb134-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(gini, gasto_educ , inversion_extranjera , gasto_salud , gasto_segsocial , poblacion, dualismo_sectorial, diversidad_etnica, pib, tipo_regimen, bal_legislativo)</span>
+<span id="cb134-7"><a href="regresión-lineal-repaso..html#cb134-7" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb134-8"><a href="regresión-lineal-repaso..html#cb134-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-9"><a href="regresión-lineal-repaso..html#cb134-9" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(gini <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> gasto_educ <span class="sc">+</span> inversion_extranjera <span class="sc">+</span> gasto_salud <span class="sc">+</span> gasto_segsocial <span class="sc">+</span></span>
+<span id="cb134-10"><a href="regresión-lineal-repaso..html#cb134-10" aria-hidden="true" tabindex="-1"></a>                poblacion <span class="sc">+</span> dualismo_sectorial <span class="sc">+</span> diversidad_etnica <span class="sc">+</span> pib <span class="sc">+</span> </span>
+<span id="cb134-11"><a href="regresión-lineal-repaso..html#cb134-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">factor</span>(tipo_regimen) <span class="sc">+</span> bal_legislativo,</span>
+<span id="cb134-12"><a href="regresión-lineal-repaso..html#cb134-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> bienestar_no_na)</span>
+<span id="cb134-13"><a href="regresión-lineal-repaso..html#cb134-13" aria-hidden="true" tabindex="-1"></a><span class="fu">screenreg</span>(model_2)</span></code></pre></div>
+<pre><code>## 
+## =================================
+##                        Model 1   
+## ---------------------------------
+## (Intercept)             85.94 ***
+##                         (8.73)   
+## gasto_educ               1.59 ***
+##                         (0.45)   
+## inversion_extranjera     0.24    
+##                         (0.18)   
+## gasto_salud             -0.83 ** 
+##                         (0.26)   
+## gasto_segsocial         -0.83 ***
+##                         (0.20)   
+## poblacion               -0.93 ***
+##                         (0.17)   
+## dualismo_sectorial      -0.17 ***
+##                         (0.03)   
+## diversidad_etnica        3.68 ***
+##                         (1.04)   
+## pib                     -0.00 ** 
+##                         (0.00)   
+## factor(tipo_regimen)2   -2.29    
+##                         (4.75)   
+## factor(tipo_regimen)3   -2.90    
+##                         (4.70)   
+## factor(tipo_regimen)4   -5.14    
+##                         (4.62)   
+## bal_legislativo        -10.40 ***
+##                         (2.22)   
+## ---------------------------------
+## R^2                      0.59    
+## Adj. R^2                 0.56    
+## Num. obs.              167       
+## =================================
+## *** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05</code></pre>
+</div>
+<div id="heterocedasticidad" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Heterocedasticidad<a href="regresión-lineal-repaso..html#heterocedasticidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Decíamos que tenemos que asegurar que las estimaciones de los coeficientes sean válidas, para no caer en errores de comparar cosas que en realidad son incomparables. En la regresión lineal, esto consiste en que la recta formada por la ecuación efectivamente represente el comportamiento de la variable dependiente a lo largo de toda la recta. Esto quiere decir que solo una parte de nuestros datos responde al modelo, y que podrían faltar más variables para estudiar</p>
+<div class="figure">
+<img src="images/regresion_lineal/het2.jpg" alt="" />
+<p class="caption">Ejemplo de heterocedasticidad</p>
+</div>
+<p>Para medir y detectar esto tenemos varias herramientas.</p>
+<p>La primera herramienta que veremos es para detectar heterocedasticidad, mediante el text de Breusch-Pagan:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="regresión-lineal-repaso..html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model_2)</span></code></pre></div>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  model_2
+## BP = 32.369, df = 12, p-value = 0.001213</code></pre>
+<p>La interpretación de este test es al revés que la de los p-values de los coeficientes: si es menor que 0.05 tenemos que hay heterocedasticidad, como es el caso de este modelo.</p>
+<p><img src="images/regresion_lineal/llorar.png" /></p>
+<p>Ante esto existen varias alternativas</p>
+<div id="transformación-de-variables" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> 1) Transformación de variables<a href="regresión-lineal-repaso..html#transformación-de-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si es el caso, es posible que alguna de las variables tenga una relación no lineal con la variable dependiente, por ejemplo cuadrática o exponencial. Cuando pasa esto el problema se puede resolver transformando la variable problemática.</p>
+</div>
+<div id="el-uso-de-errores-estándar-robustos" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> 2) El uso de errores estándar robustos<a href="regresión-lineal-repaso..html#el-uso-de-errores-estándar-robustos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Básicamente, esto consiste en recalcular los errores estándar para que el intervalo en el cual es más creíble que se mueve el valor real del coeficiente (no olvidemos que nuestro modelo es una estimación), tenga mas probabilidades de contener al valor real.</p>
+<p>Esto se hace de la siguiente manera:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="regresión-lineal-repaso..html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 15</span></span>
+<span id="cb138-2"><a href="regresión-lineal-repaso..html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_2, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_2, <span class="at">type=</span><span class="st">&quot;HC1&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##                          Estimate  Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)            8.5936e+01  9.1360e+00  9.4063 &lt; 2.2e-16 ***
+## gasto_educ             1.5850e+00  5.2276e-01  3.0321 0.0028505 ** 
+## inversion_extranjera   2.3823e-01  1.4281e-01  1.6682 0.0973145 .  
+## gasto_salud           -8.3020e-01  2.2928e-01 -3.6208 0.0003980 ***
+## gasto_segsocial       -8.2728e-01  2.6079e-01 -3.1722 0.0018261 ** 
+## poblacion             -9.2902e-01  2.0602e-01 -4.5093 1.282e-05 ***
+## dualismo_sectorial    -1.7044e-01  3.2949e-02 -5.1729 7.080e-07 ***
+## diversidad_etnica      3.6796e+00  9.5722e-01  3.8440 0.0001766 ***
+## pib                   -4.2676e-04  1.9039e-04 -2.2415 0.0264209 *  
+## factor(tipo_regimen)2 -2.2940e+00  1.4133e+00 -1.6231 0.1066179    
+## factor(tipo_regimen)3 -2.8995e+00  1.2048e+00 -2.4067 0.0172815 *  
+## factor(tipo_regimen)4 -5.1357e+00  8.7755e-01 -5.8523 2.820e-08 ***
+## bal_legislativo       -1.0402e+01  2.3816e+00 -4.3676 2.297e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="factor-de-inflación-de-la-varianza-vif" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Factor de inflación de la varianza (VIF)<a href="regresión-lineal-repaso..html#factor-de-inflación-de-la-varianza-vif" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En la regresión multivariada, uno de los requerimentos adicionales es que las covariantes de la regresión no presentan excesiva correlación entre ellas. Esto se prueba con el factor de inflación de la varianza (VIF):</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="regresión-lineal-repaso..html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 16</span></span>
+<span id="cb140-2"><a href="regresión-lineal-repaso..html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## 
+## Attaching package: &#39;car&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     some</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     recode</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="regresión-lineal-repaso..html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(model_2)</span></code></pre></div>
+<pre><code>##                          GVIF Df GVIF^(1/(2*Df))
+## gasto_educ           1.831416  1        1.353298
+## inversion_extranjera 1.473459  1        1.213861
+## gasto_salud          1.753385  1        1.324155
+## gasto_segsocial      4.842801  1        2.200637
+## poblacion            5.019055  1        2.240325
+## dualismo_sectorial   1.216700  1        1.103041
+## diversidad_etnica    1.944754  1        1.394544
+## pib                  2.450633  1        1.565450
+## factor(tipo_regimen) 2.653868  3        1.176648
+## bal_legislativo      1.743851  1        1.320550</code></pre>
+<p>Podemos visualizar gráficamente como se ve:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="regresión-lineal-repaso..html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtenemos los valores </span></span>
+<span id="cb147-2"><a href="regresión-lineal-repaso..html#cb147-2" aria-hidden="true" tabindex="-1"></a>vif_values <span class="ot">&lt;-</span> <span class="fu">vif</span>(model_2) <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>()</span>
+<span id="cb147-3"><a href="regresión-lineal-repaso..html#cb147-3" aria-hidden="true" tabindex="-1"></a>vif_values<span class="sc">$</span>Variable <span class="ot">&lt;-</span> <span class="fu">row.names</span>(vif_values)</span>
+<span id="cb147-4"><a href="regresión-lineal-repaso..html#cb147-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-5"><a href="regresión-lineal-repaso..html#cb147-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Creamos el gráfico</span></span>
+<span id="cb147-6"><a href="regresión-lineal-repaso..html#cb147-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(vif_values) <span class="sc">+</span></span>
+<span id="cb147-7"><a href="regresión-lineal-repaso..html#cb147-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>GVIF, <span class="at">y=</span>Variable), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">fill=</span><span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span></span>
+<span id="cb147-8"><a href="regresión-lineal-repaso..html#cb147-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb147-9"><a href="regresión-lineal-repaso..html#cb147-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb147-10"><a href="regresión-lineal-repaso..html#cb147-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p>Las dos líneas corresponden a los límites de 2 y 4. Algunos autores sugieren que la multicolinealidad es problemática si el VIF adquiere un valor mayor de 2. Otros relajan este supuesto y sugieren que el VIF para una variable no sea mayor de 4.</p>
+<p>¿Cómo se resuelve?</p>
+<p>Hay que eliminar la variable problemática. Esto se hace una por una y comparando las VIF de los modelos resultantes.</p>
+</div>
+<div id="interpretacion-de-coeficientes" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Interpretacion de coeficientes<a href="regresión-lineal-repaso..html#interpretacion-de-coeficientes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para profundizar en el tipo de asociaciones en las cuales podemos dar cuenta, calcularemos un nuevo modelo mas cercano a lo que publicó <code>Reyes-Housholder (2019)</code></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="regresión-lineal-repaso..html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;bienestar&quot;</span>)</span>
+<span id="cb148-2"><a href="regresión-lineal-repaso..html#cb148-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-3"><a href="regresión-lineal-repaso..html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="co"># codificamos las variables: </span></span>
+<span id="cb148-4"><a href="regresión-lineal-repaso..html#cb148-4" aria-hidden="true" tabindex="-1"></a>bienestar <span class="ot">&lt;-</span> bienestar <span class="sc">%&gt;%</span> </span>
+<span id="cb148-5"><a href="regresión-lineal-repaso..html#cb148-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tipo_regimen=</span><span class="fu">case_when</span>(</span>
+<span id="cb148-6"><a href="regresión-lineal-repaso..html#cb148-6" aria-hidden="true" tabindex="-1"></a>    tipo_regimen<span class="sc">==</span><span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;Democracia Plena&quot;</span> ,</span>
+<span id="cb148-7"><a href="regresión-lineal-repaso..html#cb148-7" aria-hidden="true" tabindex="-1"></a>        tipo_regimen<span class="sc">==</span><span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;Gobierno precario&quot;</span> ,</span>
+<span id="cb148-8"><a href="regresión-lineal-repaso..html#cb148-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-9"><a href="regresión-lineal-repaso..html#cb148-9" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Otro&quot;</span></span>
+<span id="cb148-10"><a href="regresión-lineal-repaso..html#cb148-10" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb148-11"><a href="regresión-lineal-repaso..html#cb148-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-12"><a href="regresión-lineal-repaso..html#cb148-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-13"><a href="regresión-lineal-repaso..html#cb148-13" aria-hidden="true" tabindex="-1"></a>bienestar_no_na <span class="ot">&lt;-</span> bienestar <span class="sc">%&gt;%</span> </span>
+<span id="cb148-14"><a href="regresión-lineal-repaso..html#cb148-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(gini, gasto_educ , inversion_extranjera , gasto_salud , gasto_segsocial , poblacion, dualismo_sectorial, diversidad_etnica, pib, tipo_regimen, bal_legislativo)</span>
+<span id="cb148-15"><a href="regresión-lineal-repaso..html#cb148-15" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb148-16"><a href="regresión-lineal-repaso..html#cb148-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-17"><a href="regresión-lineal-repaso..html#cb148-17" aria-hidden="true" tabindex="-1"></a>model_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(gini <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> gasto_educ <span class="sc">+</span> inversion_extranjera <span class="sc">+</span> gasto_salud <span class="sc">+</span> gasto_segsocial <span class="sc">+</span> poblacion <span class="sc">+</span> dualismo_sectorial <span class="sc">+</span> diversidad_etnica <span class="sc">+</span> pib <span class="sc">+</span> </span>
+<span id="cb148-18"><a href="regresión-lineal-repaso..html#cb148-18" aria-hidden="true" tabindex="-1"></a>                <span class="fu">factor</span>(tipo_regimen) <span class="sc">+</span> bal_legislativo,</span>
+<span id="cb148-19"><a href="regresión-lineal-repaso..html#cb148-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> bienestar_no_na)</span>
+<span id="cb148-20"><a href="regresión-lineal-repaso..html#cb148-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-21"><a href="regresión-lineal-repaso..html#cb148-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-22"><a href="regresión-lineal-repaso..html#cb148-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-23"><a href="regresión-lineal-repaso..html#cb148-23" aria-hidden="true" tabindex="-1"></a><span class="fu">screenreg</span>(model_3)</span></code></pre></div>
+<pre><code>## 
+## =================================================
+##                                        Model 1   
+## -------------------------------------------------
+## (Intercept)                             80.76 ***
+##                                         (7.40)   
+## gasto_educ                               1.60 ***
+##                                         (0.45)   
+## inversion_extranjera                     0.23    
+##                                         (0.18)   
+## gasto_salud                             -0.81 ** 
+##                                         (0.26)   
+## gasto_segsocial                         -0.83 ***
+##                                         (0.20)   
+## poblacion                               -0.93 ***
+##                                         (0.17)   
+## dualismo_sectorial                      -0.17 ***
+##                                         (0.03)   
+## diversidad_etnica                        3.66 ***
+##                                         (1.03)   
+## pib                                     -0.00 ** 
+##                                         (0.00)   
+## factor(tipo_regimen)Gobierno precario    2.26 *  
+##                                         (1.06)   
+## factor(tipo_regimen)Otro                 3.00 *  
+##                                         (1.35)   
+## bal_legislativo                        -10.42 ***
+##                                         (2.21)   
+## -------------------------------------------------
+## R^2                                      0.59    
+## Adj. R^2                                 0.56    
+## Num. obs.                              167       
+## =================================================
+## *** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05</code></pre>
+<p>Para la interpretación debemos tener en cuenta varias cosas: La capacidad explicativa del modelo en su conjunto, los coeficientes de las variables independientes–que explican la relación de cada variable independiente con la variable dependiente–y su significancia estadística.</p>
+<div id="la-r-cuadrada" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> La R cuadrada<a href="regresión-lineal-repaso..html#la-r-cuadrada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lo primero es la R cuadrada y la R cuadrada ajustada. Este indicador se interpreta como la proporción de la variación de la variable dependiente que es explicada por el modelo. El indicador más importante es el ajustado, ya que penaliza por el número de variables y nos ayuda a decidir si vale o no la pena la inclusión de una variable. En este caso, podemos decir que nuestro modelo explica el 56% de la variación del coeficiente de Gini entre países y periodos.</p>
+</div>
+<div id="los-coeficientes-de-las-variables-independientes." class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Los coeficientes de las variables independientes.<a href="regresión-lineal-repaso..html#los-coeficientes-de-las-variables-independientes." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Antes de Avanzar en la interpretación, debemos advertir de ser cuidadosos. Siempre debemos verificar primero que los coeficientes sean estadísticamente significativos antes de interpretar. Como vimos, los coeficientes son una estimación del efecto que pensamos debe tener una variable independiente sobre otra, la dependiente. Para poder verificar esa relación se construyen intervalos de confianza en torno a este estimador, para calcular que tan legos es probable que caiga nuestro estimador del verdadero valor. Esto es, se asocia un error estándar al coeficiente. Siguiendo la tradicion estadística, la probabilidad de que el valor real caiga muy alejado de nuestro estimador se mide a partir de este error estándar: 1.96 veces el error estándar es considerado un intervalo de variación a cada extremo dentro del cual es probable con un 95% de confianza que caiga el valor real.</p>
+<p>En otras palabras, debemos cuidar que el rango dentro del cual podría ubicarse el valor real de nuestro estimador, no exista una posibilidad razonable de que en realidad sea la contraria a la que predice nuestro modelo. Los paquetes estadísticos modernos marcan esto con asteriscos: Tres asteriscos cuando la significancia estadística es al 99.9%, dos cuando es al 99% y uno cuando es al 95%. En otras palabras, si el coeficiente no tiene al menos un asterisco al lado es que el margen de error es demasiado grande para poder asegurar que ese sea el comportamiento real de la variable.</p>
+<p>De hecho, cuando no tiene ningún asterisco, la interpretación correcta de un coeficiente es que no es estadisticamente significativo y por tanto no se pueden hacer aseveraciones respecto a una posible relación entre la variable independiente y la dependiente. En este caso, <em>la inversión extranjera directa no tiene una relación estadísticamente significativa con el coeficiente de Gini</em></p>
+<p>Una vez aclarado esto, avanzamos en la interpretación de los coeficientes. Aunque el sentido de la interpretación es parecido, debemos dividir la interpretación en dos: variables cuantitativas y variables cualitativas.</p>
+<div id="variables-cuantitativas" class="section level4 hasAnchor" number="4.4.2.1">
+<h4><span class="header-section-number">4.4.2.1</span> Variables cuantitativas<a href="regresión-lineal-repaso..html#variables-cuantitativas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En el caso de las variables numéricas, la interpretación es: ante un cambio de una unidad de la variable independiente, la variable dependiente cambiará en lo que indica su coeficiente, siempre que los demás factores se mantengan constantes. Haremos el ejemplo con el gasto en salud.</p>
+<p><em>Por cada unidad que aumente el porcentaje del PIB gastado en salud, el coeficiente de Gini disminuye (si hubiese signo positivo aumenta), en promedio, en 0.81 puntos si el resto de los factores permanecen inalterados. Esta relación es estadísticamente significativa al 95% </em></p>
+</div>
+<div id="variables-cualitativas" class="section level4 hasAnchor" number="4.4.2.2">
+<h4><span class="header-section-number">4.4.2.2</span> Variables cualitativas<a href="regresión-lineal-repaso..html#variables-cualitativas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Aunque la interpretación es parecida, cabe mencionar que en este tipo de variables no podemos hablar del “aumento en una unidad”, sino de la presencia o no de características distintas a la categoría de referencia del modelo.</p>
+<p>En el caso de nuestro último modelo, una variable cualitativa es el tipo de régimen, que se divide en democracia, gobierno precario y otro. Cuando metemos una variable cualitativa en un modelo de regresión, el modelo toma una categoría como la referencia, y estima un efecto específico (si es mayor o menor) para las otras. En el caso de nuestro ejemplo, la categoría de referencia es la democracia. Esto lo sabemos porque no aparece en el modelo. Ahora sí, vamos con un ejemplo:</p>
+<p><em>Los países que tienen un gobierno precario presentan, en promedio, un coeficiente de Gini en 2.26 puntos respecto a los que tienen un gobierno democrático, con una significancia estadística de 95%</em></p>
+<p>¿Cual sería el efecto de tener otro tipo de régimen?</p>
+</div>
+<div id="interacciones" class="section level4 hasAnchor" number="4.4.2.3">
+<h4><span class="header-section-number">4.4.2.3</span> Interacciones<a href="regresión-lineal-repaso..html#interacciones" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Existe una particularidad: las interacciones. Esto es el término que se usa para referirse a dos variables independientes que actúan juntas con la variable dependiente.
+En los modelos de regresión podemos especificarlas de manera muy sencilla, utilizando un signo de multiplicación en lugar de un mas entre las variables que queremos interactuar.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="regresión-lineal-repaso..html#cb150-1" aria-hidden="true" tabindex="-1"></a>model_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(gini <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> inversion_extranjera <span class="sc">+</span> gasto_salud <span class="sc">+</span> gasto_segsocial <span class="sc">+</span></span>
+<span id="cb150-2"><a href="regresión-lineal-repaso..html#cb150-2" aria-hidden="true" tabindex="-1"></a>                poblacion <span class="sc">+</span> dualismo_sectorial <span class="sc">+</span> diversidad_etnica <span class="sc">+</span> pib <span class="sc">+</span> </span>
+<span id="cb150-3"><a href="regresión-lineal-repaso..html#cb150-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">factor</span>(tipo_regimen)<span class="sc">*</span>gasto_educ <span class="sc">+</span> bal_legislativo,</span>
+<span id="cb150-4"><a href="regresión-lineal-repaso..html#cb150-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> bienestar_no_na)</span>
+<span id="cb150-5"><a href="regresión-lineal-repaso..html#cb150-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-6"><a href="regresión-lineal-repaso..html#cb150-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-7"><a href="regresión-lineal-repaso..html#cb150-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-8"><a href="regresión-lineal-repaso..html#cb150-8" aria-hidden="true" tabindex="-1"></a><span class="fu">screenreg</span>(<span class="fu">list</span>(model_3, model_4))</span></code></pre></div>
+<pre><code>## 
+## ========================================================================
+##                                                   Model 1     Model 2   
+## ------------------------------------------------------------------------
+## (Intercept)                                        80.76 ***   82.17 ***
+##                                                    (7.40)      (8.39)   
+## gasto_educ                                          1.60 ***    1.78 ** 
+##                                                    (0.45)      (0.60)   
+## inversion_extranjera                                0.23        0.23    
+##                                                    (0.18)      (0.18)   
+## gasto_salud                                        -0.81 **    -0.65 *  
+##                                                    (0.26)      (0.25)   
+## gasto_segsocial                                    -0.83 ***   -0.96 ***
+##                                                    (0.20)      (0.22)   
+## poblacion                                          -0.93 ***   -0.99 ***
+##                                                    (0.17)      (0.17)   
+## dualismo_sectorial                                 -0.17 ***   -0.15 ***
+##                                                    (0.03)      (0.03)   
+## diversidad_etnica                                   3.66 ***    4.18 ***
+##                                                    (1.03)      (1.01)   
+## pib                                                -0.00 **    -0.00 ** 
+##                                                    (0.00)      (0.00)   
+## factor(tipo_regimen)Gobierno precario               2.26 *      8.40 *  
+##                                                    (1.06)      (3.37)   
+## factor(tipo_regimen)Otro                            3.00 *     -7.46    
+##                                                    (1.35)      (4.98)   
+## bal_legislativo                                   -10.42 ***   -9.76 ***
+##                                                    (2.21)      (2.13)   
+## factor(tipo_regimen)Gobierno precario:gasto_educ               -1.66 *  
+##                                                                (0.80)   
+## factor(tipo_regimen)Otro:gasto_educ                             3.18 *  
+##                                                                (1.38)   
+## ------------------------------------------------------------------------
+## R^2                                                 0.59        0.63    
+## Adj. R^2                                            0.56        0.60    
+## Num. obs.                                         167         167       
+## ========================================================================
+## *** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05</code></pre>
+</div>
+</div>
+<div id="ejercicio-interpretar-los-resultados-de-esta-regresión" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Ejercicio: interpretar los resultados de esta regresión<a href="regresión-lineal-repaso..html#ejercicio-interpretar-los-resultados-de-esta-regresión" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure">
+<img src="images/regresion_lineal/modelo.JPG" alt="" />
+<p class="caption">Fuente; Reyes-Housholder (2019)</p>
+</div>
+</div>
+<div id="bibliografía-2" class="section level3 hasAnchor" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Bibliografía<a href="regresión-lineal-repaso..html#bibliografía-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Reyes-Housholder, C. (2019). A Theory of Gender’s Role on Presidential Approval Ratings in Corrupt Times. Political Research Quarterly.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regresión-logística.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

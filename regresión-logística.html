@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Regresión logística | Métodos Cuantitativos para Relaciones Internacionales</title>
+  <meta name="description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Regresión logística | Métodos Cuantitativos para Relaciones Internacionales" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Regresión logística | Métodos Cuantitativos para Relaciones Internacionales" />
+  
+  <meta name="twitter:description" content="Universidad Anáhuac México Norte, Semestre Enero-Junio 2022" />
+  
+
+<meta name="author" content="Armando González Díaz. armando.gonzalezdi@anahuac.mx  www.twitter.com/Ar_GonTr" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="Anahuac.ico" type="image/x-icon" />
+<link rel="prev" href="regresión-lineal-repaso..html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+% https://stackoverflow.com/a/4425214/8242291
+var links = document.links;
+
+for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+
+    if (links[i].hostname != window.location.hostname) {
+        links[i].target = '_blank';
+    }
+
+}
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Instalación y primeros pasos con R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#windows"><i class="fa fa-check"></i><b>1.1</b> Windows</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#descargar-e-instalar-r"><i class="fa fa-check"></i><b>1.1.1</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#instalar-rtools"><i class="fa fa-check"></i><b>1.1.2</b> Instalar <code>Rtools</code></a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Instalación de <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#instalación-en-mac"><i class="fa fa-check"></i><b>1.2</b> Instalación en Mac</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#instalación-de-xquartz"><i class="fa fa-check"></i><b>1.2.1</b> Instalación de <code>Xquartz</code></a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#descargar-e-instalar-r-1"><i class="fa fa-check"></i><b>1.2.2</b> Descargar e instalar <code>R</code></a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Instalar <code>Rstudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#lo-logramos"><i class="fa fa-check"></i><b>1.3</b> ¡Lo logramos!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html"><i class="fa fa-check"></i><b>2</b> Introducción al manejo de datos en R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#paquetes-necesarios"><i class="fa fa-check"></i><b>2.1</b> Paquetes necesarios</a></li>
+<li class="chapter" data-level="2.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#repaso-operaciones-básicas-y-primera-interacción-con-r"><i class="fa fa-check"></i><b>2.2</b> Repaso: Operaciones básicas y primera interacción con R</a></li>
+<li class="chapter" data-level="2.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#instalación-y-carga-de-paquetes."><i class="fa fa-check"></i><b>2.3</b> Instalación y carga de paquetes.</a></li>
+<li class="chapter" data-level="2.4" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#principales-tipos-de-objetos-valores-vectores-matrices-y-data.frame"><i class="fa fa-check"></i><b>2.4</b> Principales tipos de objetos: valores, vectores, matrices y <code>data.frame</code></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#vectores"><i class="fa fa-check"></i><b>2.4.1</b> vectores</a></li>
+<li class="chapter" data-level="2.4.2" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#matrices"><i class="fa fa-check"></i><b>2.4.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#el-dataframe"><i class="fa fa-check"></i><b>2.4.3</b> El <code>dataframe</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#selección-de-objetos-dentro-de-una-base-de-datos"><i class="fa fa-check"></i><b>2.5</b> Selección de objetos dentro de una base de datos</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#teoría-de-conjuntos-álgebra-y-los-lenguajes-de-programación"><i class="fa fa-check"></i><b>2.5.1</b> Teoría de conjuntos, álgebra y los lenguajes de programación</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#algunas-operaciones-básicas-que-pueden-hacerse-con-r"><i class="fa fa-check"></i><b>2.6</b> Algunas operaciones básicas que pueden hacerse con <code>R</code></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#importando-datos-con-r"><i class="fa fa-check"></i><b>2.6.1</b> Importando datos con R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#operaciones-básicas"><i class="fa fa-check"></i><b>2.7</b> Operaciones básicas</a></li>
+<li class="chapter" data-level="2.8" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#ejercicio"><i class="fa fa-check"></i><b>2.8</b> Ejercicio:</a></li>
+<li class="chapter" data-level="2.9" data-path="introducción-al-manejo-de-datos-en-r.html"><a href="introducción-al-manejo-de-datos-en-r.html#bibliografía"><i class="fa fa-check"></i><b>2.9</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><i class="fa fa-check"></i><b>3</b> Exprimiendo una base de datos: obtener datos útiles.</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#instalamos-y-cargamos-paquete"><i class="fa fa-check"></i><b>3.1</b> Instalamos y cargamos paquete</a></li>
+<li class="chapter" data-level="3.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-pipe-operator"><i class="fa fa-check"></i><b>3.2</b> El <code>pipe</code> operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.3" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#el-binomio-group_by-summarise"><i class="fa fa-check"></i><b>3.3</b> El binomio <code>group_by + summarise</code></a></li>
+<li class="chapter" data-level="3.4" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#creación-de-variables"><i class="fa fa-check"></i><b>3.4</b> Creación de variables</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#r-base"><i class="fa fa-check"></i><b>3.4.1</b> <code>R base</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#group_by-mutate"><i class="fa fa-check"></i><b>3.4.2</b> <code>group_by + mutate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#ejercicios"><i class="fa fa-check"></i><b>3.5</b> Ejercicios:</a></li>
+<li class="chapter" data-level="3.6" data-path="exprimiendo-una-base-de-datos-obtener-datos-útiles..html"><a href="exprimiendo-una-base-de-datos-obtener-datos-útiles..html#bibliografía-1"><i class="fa fa-check"></i><b>3.6</b> Bibliografía</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html"><i class="fa fa-check"></i><b>4</b> Regresión lineal: Repaso.</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#recordamos-lo-que-habíamos-visto-en-clase"><i class="fa fa-check"></i><b>4.1</b> Recordamos lo que habíamos visto en clase:</a></li>
+<li class="chapter" data-level="4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#heterocedasticidad"><i class="fa fa-check"></i><b>4.2</b> Heterocedasticidad</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#transformación-de-variables"><i class="fa fa-check"></i><b>4.2.1</b> 1) Transformación de variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#el-uso-de-errores-estándar-robustos"><i class="fa fa-check"></i><b>4.2.2</b> 2) El uso de errores estándar robustos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#factor-de-inflación-de-la-varianza-vif"><i class="fa fa-check"></i><b>4.3</b> Factor de inflación de la varianza (VIF)</a></li>
+<li class="chapter" data-level="4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#interpretacion-de-coeficientes"><i class="fa fa-check"></i><b>4.4</b> Interpretacion de coeficientes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#la-r-cuadrada"><i class="fa fa-check"></i><b>4.4.1</b> La R cuadrada</a></li>
+<li class="chapter" data-level="4.4.2" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#los-coeficientes-de-las-variables-independientes."><i class="fa fa-check"></i><b>4.4.2</b> Los coeficientes de las variables independientes.</a></li>
+<li class="chapter" data-level="4.4.3" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#ejercicio-interpretar-los-resultados-de-esta-regresión"><i class="fa fa-check"></i><b>4.4.3</b> Ejercicio: interpretar los resultados de esta regresión</a></li>
+<li class="chapter" data-level="4.4.4" data-path="regresión-lineal-repaso..html"><a href="regresión-lineal-repaso..html#bibliografía-2"><i class="fa fa-check"></i><b>4.4.4</b> Bibliografía</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regresión-logística.html"><a href="regresión-logística.html"><i class="fa fa-check"></i><b>5</b> Regresión logística</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regresión-logística.html"><a href="regresión-logística.html#importar-la-base-de-datos"><i class="fa fa-check"></i><b>5.1</b> Importar la base de datos</a></li>
+<li class="chapter" data-level="5.2" data-path="regresión-logística.html"><a href="regresión-logística.html#descripción-de-la-base"><i class="fa fa-check"></i><b>5.2</b> Descripción de la base</a></li>
+<li class="chapter" data-level="5.3" data-path="regresión-logística.html"><a href="regresión-logística.html#limpieza-de-bases-de-datos"><i class="fa fa-check"></i><b>5.3</b> Limpieza de bases de datos</a></li>
+<li class="chapter" data-level="5.4" data-path="regresión-logística.html"><a href="regresión-logística.html#para-qué-sirve-este-modelo"><i class="fa fa-check"></i><b>5.4</b> ¿Para qué sirve este modelo?</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regresión-logística.html"><a href="regresión-logística.html#información-adicional"><i class="fa fa-check"></i><b>5.4.1</b> Información adicional:</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Métodos Cuantitativos para Relaciones Internacionales</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regresión-logística" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Regresión logística<a href="regresión-logística.html#regresión-logística" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Una de las herramientas mas comunes y útiles en el análisis de datos es la regresión logística. Esta se utiliza cuando se intenta predecir el resultado de una variable cardiotónico, o categórica en el caso de la regresión logística multitudinaria, a partir de las probabilidades de que asuma una u otra categoría.</p>
+<p>Vamos a trabajar con una base de datos clásica, que sirve para analizar la probabilidad de sobrevivencia de los pasajeros del Titanic de acuerdo con sus características sociodemográficas: sexo, edad, si tenían esposas o hijos, si viajaban con boleto de primera, segunda o tercera clase, etc.</p>
+<div id="importar-la-base-de-datos" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Importar la base de datos<a href="regresión-logística.html#importar-la-base-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para poder cargar la base de datos, lo más sencillo es situar el directorio de trabajo en la carpeta donde está el archivo.
+Esto puede hacerse fácilmenet con los siguientes comandos:</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="regresión-logística.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># esto nos dice en que directorio estamos navegando</span></span>
+<span id="cb152-2"><a href="regresión-logística.html#cb152-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-3"><a href="regresión-logística.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;ejemplo/carpetadedestino&quot;</span>) <span class="co"># cambia la carpeta de trabajo</span></span></code></pre></div>
+<p>Si queremos una versión interactiva de esto, podemos utilizar el panel derecho de R, en la pestaña <em>Files</em></p>
+<div class="figure">
+<img src="images/logistica/panelderechofiles.JPG" alt="" />
+<p class="caption">aquí podemos navegar por los directorios</p>
+</div>
+<p>En esa pestaña podemos buscar hasta encontrar la carpeta donde queramos establecer nuestro directorio de trabajo.</p>
+<p><img src="images/logistica/establecer%20directorio.JPG" alt="le damos clic a more y en el panel, set as working direcgory" />
+Cuando querramos importar archivos que tengamos en un .csv o un .xlsx, será muy útilo tener los archivos que queremos importar en el directorio de trabajo de R. A continuación, cargaremos la base de datos:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="regresión-logística.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos base de datos</span></span>
+<span id="cb153-2"><a href="regresión-logística.html#cb153-2" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;train.csv&#39;</span>,<span class="at">header=</span>T,<span class="at">na.strings=</span><span class="fu">c</span>(<span class="st">&quot;&quot;</span>))</span></code></pre></div>
+</div>
+<div id="descripción-de-la-base" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Descripción de la base<a href="regresión-logística.html#descripción-de-la-base" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="regresión-logística.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tabulamos la supervivencia:</span></span>
+<span id="cb154-2"><a href="regresión-logística.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(titanic<span class="sc">$</span>Survived)</span></code></pre></div>
+<pre><code>## 
+##   0   1 
+## 549 342</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="regresión-logística.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(titanic<span class="sc">$</span>Survived, titanic<span class="sc">$</span>Sex)</span></code></pre></div>
+<pre><code>##    
+##     female male
+##   0     81  468
+##   1    233  109</code></pre>
+<p>Como vemos, la mayoría de los pasajeros no sobrevivió.</p>
+<div class="figure">
+<img src="images/logistica/jack_si_cabe.jpg" alt="" />
+<p class="caption">Meme para distracción</p>
+</div>
+<p>Vistazo rápido a las variables.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="regresión-logística.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos la variable sexo en factores:</span></span>
+<span id="cb158-2"><a href="regresión-logística.html#cb158-2" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Sex=</span><span class="fu">factor</span>(Sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>)))</span>
+<span id="cb158-3"><a href="regresión-logística.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   PassengerId Survived Pclass                                                Name    Sex Age SibSp Parch           Ticket    Fare Cabin Embarked</span></span>
+<span id="cb158-4"><a href="regresión-logística.html#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1           1        0      3                             Braund, Mr. Owen Harris   male  22     1     0        A/5 21171  7.2500  &lt;NA&gt;        S</span></span>
+<span id="cb158-5"><a href="regresión-logística.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2           2        1      1 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0         PC 17599 71.2833   C85        C</span></span>
+<span id="cb158-6"><a href="regresión-logística.html#cb158-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3           3        1      3                              Heikkinen, Miss. Laina female  26     0     0 STON/O2. 3101282  7.9250  &lt;NA&gt;        S</span></span>
+<span id="cb158-7"><a href="regresión-logística.html#cb158-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4           4        1      1        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0           113803 53.1000  C123        S</span></span>
+<span id="cb158-8"><a href="regresión-logística.html#cb158-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 5           5        0      3                            Allen, Mr. William Henry   male  35     0     0           373450  8.0500  &lt;NA&gt;        S</span></span>
+<span id="cb158-9"><a href="regresión-logística.html#cb158-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 6           6        0      3                                    Moran, Mr. James   male  NA     0     0           330877  8.4583  &lt;NA&gt;        Q</span></span></code></pre></div>
+<p>Ahora bien, ¿Qué significan estas variables?
+Acá tenemos el <em>codebook</em>:</p>
+<div class="figure">
+<img src="images/logistica/codebook.JPG" alt="" />
+<p class="caption">Meme para distracción</p>
+</div>
+</div>
+<div id="limpieza-de-bases-de-datos" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Limpieza de bases de datos<a href="regresión-logística.html#limpieza-de-bases-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando trabajamos con una base de datos, normalmente es necesario checar su consistencia, si las variables fueron recabadas correctamente, etc.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="regresión-logística.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Antes de estimar nuestra regresión, debemos fijarnos en la distribución de los datos</span></span>
+<span id="cb159-2"><a href="regresión-logística.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="co"># observar cuantos NA hay por columna</span></span>
+<span id="cb159-3"><a href="regresión-logística.html#cb159-3" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(titanic)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-66">Table 5.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">titanic</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">891</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">12</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">4</td>
+</tr>
+<tr class="odd">
+<td align="left">factor</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">7</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="13%" />
+<col width="19%" />
+<col width="5%" />
+<col width="5%" />
+<col width="8%" />
+<col width="12%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">12</td>
+<td align="right">82</td>
+<td align="right">0</td>
+<td align="right">891</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Ticket</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">3</td>
+<td align="right">18</td>
+<td align="right">0</td>
+<td align="right">681</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Cabin</td>
+<td align="right">687</td>
+<td align="right">0.23</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">0</td>
+<td align="right">147</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Embarked</td>
+<td align="right">2</td>
+<td align="right">1.00</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="13%" />
+<col width="18%" />
+<col width="10%" />
+<col width="12%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Sex</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">mal: 577, fem: 314</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="15%" />
+<col width="11%" />
+<col width="15%" />
+<col width="7%" />
+<col width="7%" />
+<col width="5%" />
+<col width="7%" />
+<col width="7%" />
+<col width="6%" />
+<col width="7%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">PassengerId</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">446.00</td>
+<td align="right">257.35</td>
+<td align="right">1.00</td>
+<td align="right">223.50</td>
+<td align="right">446.00</td>
+<td align="right">668.5</td>
+<td align="right">891.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">Survived</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">0.38</td>
+<td align="right">0.49</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.0</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▅</td>
+</tr>
+<tr class="odd">
+<td align="left">Pclass</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">2.31</td>
+<td align="right">0.84</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">3.0</td>
+<td align="right">3.00</td>
+<td align="left">▃▁▃▁▇</td>
+</tr>
+<tr class="even">
+<td align="left">Age</td>
+<td align="right">177</td>
+<td align="right">0.8</td>
+<td align="right">29.70</td>
+<td align="right">14.53</td>
+<td align="right">0.42</td>
+<td align="right">20.12</td>
+<td align="right">28.00</td>
+<td align="right">38.0</td>
+<td align="right">80.00</td>
+<td align="left">▂▇▅▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">SibSp</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">0.52</td>
+<td align="right">1.10</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.0</td>
+<td align="right">8.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">Parch</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">0.38</td>
+<td align="right">0.81</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.0</td>
+<td align="right">6.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Fare</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">32.20</td>
+<td align="right">49.69</td>
+<td align="right">0.00</td>
+<td align="right">7.91</td>
+<td align="right">14.45</td>
+<td align="right">31.0</td>
+<td align="right">512.33</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="regresión-logística.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Otra forma de checar el porcentaje de missing values.</span></span>
+<span id="cb160-2"><a href="regresión-logística.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;naniar&quot;)</span></span>
+<span id="cb160-3"><a href="regresión-logística.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb160-4"><a href="regresión-logística.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_fct</span>(<span class="at">x =</span> titanic, <span class="at">fct =</span> Pclass)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="regresión-logística.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Para estimar un modelo de este tipo se necesita especificar las variables categóricas como factor:</span></span>
+<span id="cb161-2"><a href="regresión-logística.html#cb161-2" aria-hidden="true" tabindex="-1"></a>titanic<span class="sc">$</span>Pclass <span class="ot">&lt;-</span> <span class="fu">factor</span>(titanic<span class="sc">$</span>Pclass, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Primera&quot;</span>, <span class="st">&quot;Segunda&quot;</span>, <span class="st">&quot;Tercera&quot;</span>))</span></code></pre></div>
+</div>
+<div id="para-qué-sirve-este-modelo" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> ¿Para qué sirve este modelo?<a href="regresión-logística.html#para-qué-sirve-este-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Observemos más de cerca algunas características básicas de quienes sobrevivieron y no de acuerdo a sexo, edad y si viajaban en primera, segunda o tercera clase. Este tipo de variables son un proxy de fenómenos de mucho interés en ciencias sociales.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="regresión-logística.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(titanic<span class="sc">$</span>Survived, titanic<span class="sc">$</span>Sex) <span class="sc">%&gt;%</span> <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<pre><code>##    
+##       female     male
+##   0 25.79618 81.10919
+##   1 74.20382 18.89081</code></pre>
+<p>Como puede verse en este tabulado, el 74% de las mujeres sobrevivió, pero sólo lo hizo el 18.9% de los hombres.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="regresión-logística.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(titanic<span class="sc">$</span>Survived, titanic<span class="sc">$</span>Pclass) <span class="sc">%&gt;%</span> <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<pre><code>##    
+##      Primera  Segunda  Tercera
+##   0 37.03704 52.71739 75.76375
+##   1 62.96296 47.28261 24.23625</code></pre>
+<p>Otra variable de interes es el tipo de ticket, proxy de nivel socioeconómico. Mientras el 62% de los pasajeros que viajaban en primera clase sobrevivió, solo lograron lo mismo el 47.2% de los que viajaban en segunda clase y 24.2% de los que viajaban en tercera clase.</p>
+<p>Aquí cabe resaltar algo que ya notamos: Cuando calculamos un modelo logístico nuestra variable dependiente suele asumir solo dos valores, cero y uno. En nuestro caso cero está codificada como no sobrevivió &lt;/3 y 1 como sobrevivió.</p>
+<p>Existen muchas maneras de tratar con la ausencia de datos. Por simplicidad, en este caso los eliminaremos. De manera automática, R va a excluir las observaciones con datos faltantes en alguna de las variables del modelo. No obstante, debemos asegurarnos que no sean demasiados datos con observaciones faltantes.</p>
+<p>El modelo logístico puede ser estimado con la funcion <code>glm</code>:</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="regresión-logística.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimamos el modelo:</span></span>
+<span id="cb166-2"><a href="regresión-logística.html#cb166-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Survived <span class="sc">~</span>Sex<span class="sc">+</span>Age<span class="sc">+</span>Pclass<span class="sc">+</span>SibSp,<span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">&#39;logit&#39;</span>),<span class="at">data=</span>titanic)</span>
+<span id="cb166-3"><a href="regresión-logística.html#cb166-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = Survived ~ Sex + Age + Pclass + SibSp, family = binomial(link = &quot;logit&quot;), 
+##     data = titanic)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.7876  -0.6417  -0.3864   0.6261   2.4539  
+## 
+## Coefficients:
+##                Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)    4.334201   0.450700   9.617  &lt; 2e-16 ***
+## Sexmale       -2.627679   0.214771 -12.235  &lt; 2e-16 ***
+## Age           -0.044760   0.008225  -5.442 5.27e-08 ***
+## PclassSegunda -1.414360   0.284727  -4.967 6.78e-07 ***
+## PclassTercera -2.652618   0.285832  -9.280  &lt; 2e-16 ***
+## SibSp         -0.380190   0.121516  -3.129  0.00176 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 964.52  on 713  degrees of freedom
+## Residual deviance: 636.56  on 708  degrees of freedom
+##   (177 observations deleted due to missingness)
+## AIC: 648.56
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>Los modelos logísticos son más fáciles de leer si los coeficientes están exponenciados.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="regresión-logística.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Coeficientes exponenciados:</span></span>
+<span id="cb168-2"><a href="regresión-logística.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Sólo los odds ratio:</span></span>
+<span id="cb168-3"><a href="regresión-logística.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(model))</span></code></pre></div>
+<pre><code>##   (Intercept)       Sexmale           Age PclassSegunda PclassTercera 
+##   76.26399478    0.07224595    0.95622723    0.24308120    0.07046651 
+##         SibSp 
+##    0.68373160</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="regresión-logística.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con intervalo de confianza</span></span>
+<span id="cb170-2"><a href="regresión-logística.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(model), <span class="fu">confint</span>(model)))</span></code></pre></div>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<pre><code>##                        OR       2.5 %      97.5 %
+## (Intercept)   76.26399478 32.43168880 190.2175658
+## Sexmale        0.07224595  0.04691807   0.1090202
+## Age            0.95622723  0.94057922   0.9714474
+## PclassSegunda  0.24308120  0.13778278   0.4213293
+## PclassTercera  0.07046651  0.03963642   0.1217492
+## SibSp          0.68373160  0.53451818   0.8617659</code></pre>
+<p>Para darnos una idea más clara de cómo funciona y en qué contextos se interpreta lo vamos a graficar:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="regresión-logística.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 20</span></span>
+<span id="cb173-2"><a href="regresión-logística.html#cb173-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-3"><a href="regresión-logística.html#cb173-3" aria-hidden="true" tabindex="-1"></a>inter <span class="ot">&lt;-</span> <span class="fu">with</span>(titanic, <span class="fu">data.frame</span>(<span class="at">Age =</span> <span class="fu">mean</span>(Age, <span class="at">na.rm=</span>T), </span>
+<span id="cb173-4"><a href="regresión-logística.html#cb173-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">SibSp =</span> <span class="fu">mean</span>(SibSp, <span class="at">na.rm=</span>T),</span>
+<span id="cb173-5"><a href="regresión-logística.html#cb173-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">Sex=</span><span class="fu">factor</span>(<span class="st">&quot;male&quot;</span>), </span>
+<span id="cb173-6"><a href="regresión-logística.html#cb173-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">Pclass=</span> <span class="fu">factor</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Primera&quot;</span>, <span class="st">&quot;Segunda&quot;</span>, <span class="st">&quot;Tercera&quot;</span>))))</span>
+<span id="cb173-7"><a href="regresión-logística.html#cb173-7" aria-hidden="true" tabindex="-1"></a>inter<span class="sc">$</span>prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> inter, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb173-8"><a href="regresión-logística.html#cb173-8" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> inter, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>, <span class="at">se=</span>T)</span>
+<span id="cb173-9"><a href="regresión-logística.html#cb173-9" aria-hidden="true" tabindex="-1"></a>inter<span class="sc">$</span>prob <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pred[[<span class="dv">1</span>]])</span>
+<span id="cb173-10"><a href="regresión-logística.html#cb173-10" aria-hidden="true" tabindex="-1"></a>inter<span class="sc">$</span>se <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pred[[<span class="dv">2</span>]])</span>
+<span id="cb173-11"><a href="regresión-logística.html#cb173-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-12"><a href="regresión-logística.html#cb173-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-13"><a href="regresión-logística.html#cb173-13" aria-hidden="true" tabindex="-1"></a>inter2 <span class="ot">&lt;-</span> <span class="fu">with</span>(titanic, <span class="fu">data.frame</span>(<span class="at">Age =</span> <span class="fu">mean</span>(Age, <span class="at">na.rm=</span>T), <span class="at">SibSp =</span> <span class="fu">mean</span>(SibSp, <span class="at">na.rm=</span>T),<span class="at">Sex=</span><span class="fu">factor</span>(<span class="st">&quot;female&quot;</span>), <span class="at">Pclass=</span> <span class="fu">factor</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Primera&quot;</span>, <span class="st">&quot;Segunda&quot;</span>, <span class="st">&quot;Tercera&quot;</span>))))</span>
+<span id="cb173-14"><a href="regresión-logística.html#cb173-14" aria-hidden="true" tabindex="-1"></a>inter2<span class="sc">$</span>prob <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">predict</span>(model, <span class="at">newdata =</span> inter2, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>, <span class="at">se=</span>T)[[<span class="dv">1</span>]])</span>
+<span id="cb173-15"><a href="regresión-logística.html#cb173-15" aria-hidden="true" tabindex="-1"></a>inter2<span class="sc">$</span>se <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">predict</span>(model, <span class="at">newdata =</span> inter2, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>, <span class="at">se=</span>T)[[<span class="dv">2</span>]])</span>
+<span id="cb173-16"><a href="regresión-logística.html#cb173-16" aria-hidden="true" tabindex="-1"></a>inter <span class="ot">&lt;-</span> <span class="fu">rbind</span>(inter, inter2)</span>
+<span id="cb173-17"><a href="regresión-logística.html#cb173-17" aria-hidden="true" tabindex="-1"></a>inter<span class="sc">$</span>ll <span class="ot">&lt;-</span> inter<span class="sc">$</span>prob<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>inter<span class="sc">$</span>se)</span>
+<span id="cb173-18"><a href="regresión-logística.html#cb173-18" aria-hidden="true" tabindex="-1"></a>inter<span class="sc">$</span>lu <span class="ot">&lt;-</span> inter<span class="sc">$</span>prob<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>inter<span class="sc">$</span>se)</span>
+<span id="cb173-19"><a href="regresión-logística.html#cb173-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-20"><a href="regresión-logística.html#cb173-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Cambiamos etiquetas:</span></span>
+<span id="cb173-21"><a href="regresión-logística.html#cb173-21" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(inter<span class="sc">$</span>Sex) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hombres&quot;</span>, <span class="st">&quot;Mujeres&quot;</span>)</span>
+<span id="cb173-22"><a href="regresión-logística.html#cb173-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-23"><a href="regresión-logística.html#cb173-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb173-24"><a href="regresión-logística.html#cb173-24" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(inter) <span class="sc">+</span> </span>
+<span id="cb173-25"><a href="regresión-logística.html#cb173-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Pclass, <span class="at">y =</span> prob, <span class="at">fill=</span>Pclass), <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb173-26"><a href="regresión-logística.html#cb173-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;darkred&quot;</span>))<span class="sc">+</span></span>
+<span id="cb173-27"><a href="regresión-logística.html#cb173-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>( <span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">ymin=</span>ll, <span class="at">ymax=</span>lu), <span class="at">width=</span><span class="fl">0.4</span>, <span class="at">colour=</span><span class="st">&quot;orange&quot;</span>, <span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">size=</span><span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb173-28"><a href="regresión-logística.html#cb173-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Sex) <span class="sc">+</span></span>
+<span id="cb173-29"><a href="regresión-logística.html#cb173-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Probabilidades estimadas&quot;</span>) <span class="sc">+</span></span>
+<span id="cb173-30"><a href="regresión-logística.html#cb173-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Tipo de ticket&quot;</span>) <span class="sc">+</span></span>
+<span id="cb173-31"><a href="regresión-logística.html#cb173-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ylab</span>(<span class="st">&quot;Probabilidad de superviviencia&quot;</span>) <span class="sc">+</span></span>
+<span id="cb173-32"><a href="regresión-logística.html#cb173-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb173-33"><a href="regresión-logística.html#cb173-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb173-34"><a href="regresión-logística.html#cb173-34" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="regresión-logística.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardamos los datos</span></span>
+<span id="cb174-2"><a href="regresión-logística.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename=</span><span class="st">&quot;grafico.png&quot;</span>, <span class="at">plot=</span>g, <span class="at">width=</span><span class="dv">10</span>, <span class="at">height=</span><span class="dv">8</span>, <span class="at">units=</span><span class="st">&quot;cm&quot;</span>)</span></code></pre></div>
+<div id="información-adicional" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Información adicional:<a href="regresión-logística.html#información-adicional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="http://r-statistics.co/Linear-Regression.html" class="uri">http://r-statistics.co/Linear-Regression.html</a></p>
+<p><a href="http://r-statistics.co/Model-Selection-in-R.html" class="uri">http://r-statistics.co/Model-Selection-in-R.html</a></p>
+<p><a href="https://data.princeton.edu/wws509/r/robust" class="uri">https://data.princeton.edu/wws509/r/robust</a></p>
+<p><a href="https://www.kaggle.com/c/titanic/data" class="uri">https://www.kaggle.com/c/titanic/data</a></p>
+<p><a href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/" class="uri">https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regresión-lineal-repaso..html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
